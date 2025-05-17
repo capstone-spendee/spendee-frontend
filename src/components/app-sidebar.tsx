@@ -1,103 +1,112 @@
-"use client"
+'use client';
 
-import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessagesSquare, MessageSquareText, User, Bitcoin } from "lucide-react"
-import type * as React from "react"
+import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessagesSquare, MessageSquareText, User, Bitcoin } from 'lucide-react';
+import type * as React from 'react';
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem
-} from "@/components/ui/sidebar"
-import Image from "next/image"
-import logo from "../../public/image/logo.png"
-import { NavMain } from "./nav-main"
-import { NavProjects } from "./nav-projects"
-import { NavSecondary } from "./nav-secondary"
-import { NavUser } from "./nav-user"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import Image from 'next/image';
+import logo from '../../public/image/logo.png';
+import { NavMain } from './nav-main';
+import { NavProjects } from './nav-projects';
+import { NavSecondary } from './nav-secondary';
+import { NavUser } from './nav-user';
+import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 
 const data = {
   user: {
-    name: "frontend",
-    email: "dev@spendee.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: 'frontend',
+    email: 'dev@spendee.com',
+    avatar: '/avatars/shadcn.jpg',
   },
-  navMain: [  
+  navMain: [
     {
-      title: "Documentation",
-      url: "#",
+      title: 'Documentation',
+      url: '#',
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: 'Introduction',
+          url: '#',
         },
         {
-          title: "How to use",
-          url: "#",
+          title: 'How to use',
+          url: '#',
         },
         {
-          title: "information",
-          url: "#",
-        }
+          title: 'Information',
+          url: '#',
+        },
+        {
+          title: 'FAQ',
+          url: '#',
+        },
       ],
     },
   ],
   navSecondary: [
     {
-      title: "Feedback",
-      url: "#",
+      title: 'Feedback',
+      url: '/dashboard/feedback',
       icon: MessageSquareText,
-    }
+    },
   ],
   projects: [
     {
-      name: "Check Eligibility",
-      url: "#",
+      name: 'Check Eligibility',
+      url: '/dashboard/eligibility',
       icon: ListTodo,
-      roll:[
+      roll: [
         {
-          name: "personality",
-          url: "#",
+          name: 'personality',
+          url: '#',
           icon: User,
         },
         {
-          name: "startup",
-          url: "#",
+          name: 'startup',
+          url: '#',
           icon: Building2,
-        }
-      ]
+        },
+      ],
     },
     {
-      name: "History Eligibility",
-      url: "#",
+      name: 'History Eligibility',
+      url: '/dashboard/history',
       icon: GalleryHorizontalEnd,
     },
     {
-      name: "Consultation Ai",
-      url: "#",
+      name: 'Consultation Ai',
+      url: '/dashboard',
       icon: MessagesSquare,
     },
     {
-      name: "IDR to USD",
-      url: "#",
+      name: 'IDR to USD',
+      url: '/dashboard/convert',
       icon: Bitcoin,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="inset" {...props}>
+    <Sidebar
+      variant="inset"
+      {...props}
+    >
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild className="flex justify-center">
+            <SidebarMenuButton
+              size="lg"
+              asChild
+              className="flex justify-center"
+            >
               <a href="#">
-                <Image src={logo} alt="logo" width={100} height={100} />
+                <Image
+                  src={logo}
+                  alt="logo"
+                  width={100}
+                  height={100}
+                />
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -106,11 +115,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavProjects projects={data.projects} />
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <DropdownMenuSeparator />
+        <NavSecondary
+          items={data.navSecondary}
+          className="mt-auto"
+        />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
