@@ -1,14 +1,8 @@
 "use client"
 
+import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessagesSquare, MessageSquareText, User, Bitcoin } from "lucide-react"
 import type * as React from "react"
-import { BookOpen, House, MessageSquareText, ListTodo, User, Building2, Send} from "lucide-react"
 
-import Image from "next/image"
-import logo from "../../public/image/logo.png"
-import { NavMain } from "./nav-main"
-import { NavProjects } from "./nav-projects"
-import { NavSecondary } from "./nav-secondary"
-import { NavUser } from "./nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -16,13 +10,19 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
+  SidebarMenuItem
 } from "@/components/ui/sidebar"
+import Image from "next/image"
+import logo from "../../public/image/logo.png"
+import { NavMain } from "./nav-main"
+import { NavProjects } from "./nav-projects"
+import { NavSecondary } from "./nav-secondary"
+import { NavUser } from "./nav-user"
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "frontend",
+    email: "dev@spendee.com",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [  
@@ -50,15 +50,10 @@ const data = {
     {
       title: "Feedback",
       url: "#",
-      icon: Send,
+      icon: MessageSquareText,
     }
   ],
   projects: [
-    {
-      name: "Home",
-      url: "#",
-      icon: House,
-    },
     {
       name: "Check Eligibility",
       url: "#",
@@ -77,9 +72,19 @@ const data = {
       ]
     },
     {
-      name: "Consultation",
+      name: "History Eligibility",
       url: "#",
-      icon: MessageSquareText,
+      icon: GalleryHorizontalEnd,
+    },
+    {
+      name: "Consultation Ai",
+      url: "#",
+      icon: MessagesSquare,
+    },
+    {
+      name: "IDR to USD",
+      url: "#",
+      icon: Bitcoin,
     },
   ],
 }

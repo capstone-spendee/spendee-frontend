@@ -29,7 +29,7 @@ export function NavProjects({ projects }: ProjectListProps) {
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton asChild size={isMobile ? "sm" : "lg"}>
               <a href={item.url}>
                 <item.icon />
                 <span>{item.name}</span>
@@ -51,6 +51,7 @@ export function NavProjects({ projects }: ProjectListProps) {
                   <>
                     {item.roll.map((roll, index) => (
                       <DropdownMenuItem key={index}>
+                        <roll.icon />
                         <span>{roll.name}</span>
                       </DropdownMenuItem>
                     ))}
