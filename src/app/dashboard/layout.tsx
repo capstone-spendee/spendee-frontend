@@ -11,8 +11,11 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { usePathname } from "next/navigation"
 
 export default function DashboardLayout({children}: {children: React.ReactNode}) {
+  const pathname = usePathname()
+  const path = pathname.split('/dashboard/')
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -24,11 +27,11 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+                  <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Home</BreadcrumbPage>
+                  <BreadcrumbPage>{path}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>

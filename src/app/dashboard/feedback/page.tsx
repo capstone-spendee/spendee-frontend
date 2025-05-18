@@ -7,8 +7,8 @@ import React from 'react'
 
 export default function FeedbackForm() {
   return (
-    <div>
-        <Card className="w-[650px]">
+    <div className='flex justify-around h-full'>
+        <Card className="max-w-[650px] w-full ">
       <CardHeader>
         <CardTitle>Any feedback for Spendee?</CardTitle>
         <CardDescription>We are very open to your feedback.</CardDescription>
@@ -18,17 +18,17 @@ export default function FeedbackForm() {
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Email</Label>
-              <Input id="email" placeholder="Enter your email" className='w-[600px]' />
+              <Input id="email" placeholder="Enter your email" className='w-full' />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="framework">Your feedback</Label>
-              <Textarea className='w-[600px]' id="feedback" placeholder="Enter your feedback" />
+              <Textarea className='w-full' id="feedback" placeholder="Enter your feedback" />
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter >
-        <Button>Send</Button>
+        <Button>Send Feedback</Button>
       </CardFooter>
     </Card>
     </div>
