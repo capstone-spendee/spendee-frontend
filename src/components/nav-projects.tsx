@@ -31,8 +31,8 @@ export function NavProjects({ projects }: ProjectListProps) {
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild size={isMobile ? "sm" : "lg"}>
               <a href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
+                <item.icon/>
+                <span className='font-medium'>{item.name}</span>
               </a>
             </SidebarMenuButton>
               {item.roll && (
@@ -52,7 +52,7 @@ export function NavProjects({ projects }: ProjectListProps) {
                     {item.roll.map((roll, index) => (
                       <DropdownMenuItem key={index}>
                         <roll.icon />
-                        <span>{roll.name}</span>
+                        <span className='font-medium'>{roll.name}</span>
                       </DropdownMenuItem>
                     ))}
                   </>

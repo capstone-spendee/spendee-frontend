@@ -1,12 +1,16 @@
-import Image from 'next/image'
-import React from 'react'
-import logo from '../../../public/image/logo.png'
+// import Image from 'next/image'
+import React from 'react';
+// import logo from '../../../public/image/logo.png'
 
 export default function Dashboard() {
   return (
-    <div className='flex flex-col py-9 items-center justify-center'>
-        <Image src={logo} alt="profile" width={100} height={100} />
-        <p className='text-2xl font-semibold text-gray-400'>Welcome to your dashboard</p>
+    <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+        <div className="aspect-video rounded-xl bg-muted/50" />
+        <div className="aspect-video rounded-xl bg-muted/50" />
+        <div className="aspect-video rounded-xl bg-muted/50" />
+      </div>
+      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
     </div>
-  )
+  );
 }

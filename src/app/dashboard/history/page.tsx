@@ -85,9 +85,9 @@ export default function TableDemo() {
         ))}
       </TableBody>
       <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Persentase</TableCell>
-          <TableCell className="text-right">78%</TableCell>
+        <TableRow >
+          <TableCell colSpan={4}>Persentase</TableCell>
+          <TableCell className="text-right ">78%</TableCell>
         </TableRow>
       </TableFooter>
     </Table>

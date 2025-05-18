@@ -1,5 +1,7 @@
+import { DialogUser } from '@/components/dialog'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React from 'react'
@@ -10,11 +12,11 @@ export default function StartupForm() {
         <Card>
           <CardHeader>
             <CardTitle>Startup</CardTitle>
-            <CardDescription>
+            <CardDescription className='text-gray-500'>
               Check your eligibility for you startup.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2 space-x-6 flex flex-wrap">
+          <CardContent className="space-y-3 space-x-6 grid grid-cols-2 md:grid-cols-4 " >
             <div className="space-y-1">
               <Label htmlFor="name">Name</Label>
               <Input id="name" defaultValue="Dev spendee" />
@@ -69,7 +71,14 @@ export default function StartupForm() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button>Check Eligibility</Button>
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button>Check Eligibility</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogUser />
+                </DialogContent>
+                </Dialog>
           </CardFooter>
         </Card>
     </div>
