@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { UserButton } from "@clerk/nextjs"
 import { usePathname } from "next/navigation"
 
 export default function DashboardLayout({children}: {children: React.ReactNode}) {
@@ -45,6 +46,7 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
             <div className="aspect-video rounded-xl bg-muted/50" />
           </div>
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" /> */}
+          <UserButton/>
         </div>
       </SidebarInset>
     </SidebarProvider>

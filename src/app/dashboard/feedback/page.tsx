@@ -28,7 +28,7 @@ export default function FeedbackForm() {
         </form>
       </CardContent>
       <CardFooter >
-        <Button>Send Feedback</Button>
+        <Button type='submit'>Send Feedback</Button>
       </CardFooter>
     </Card>
     </div>
