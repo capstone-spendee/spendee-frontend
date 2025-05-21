@@ -13,19 +13,19 @@ export const Footer = () => {
       items: [
         {
           title: "Reports",
-          href: "/reports",
+          href: "/",
         },
         {
           title: "Statistics",
-          href: "/statistics",
+          href: "/",
         },
         {
           title: "Dashboards",
-          href: "/dashboards",
+          href: "/",
         },
         {
           title: "Recordings",
-          href: "/recordings",
+          href: "/",
         },
       ],
     },
