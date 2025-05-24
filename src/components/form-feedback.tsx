@@ -55,8 +55,8 @@ export default function FeedbackPage() {
     }
     
   return (
-    <div className="flex justify-center items-center min-h-[80vh] bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800 px-4">
-      <Card className="w-full max-w-xl shadow-lg rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-900/80">
+    <div className="flex justify-center items-center min-h-[80vh] bg-gradient-to-br px-4">
+      <Card className="w-full max-w-xl shadow-lg rounded-2xl border ">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-bold text-center">Any feedback for Spendee?</CardTitle>
           <CardDescription className="text-center text-base">
