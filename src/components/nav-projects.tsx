@@ -4,6 +4,7 @@ import { MoreHorizontal, type LucideIcon } from 'lucide-react';
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
+import Link from 'next/link';
 
 interface Roll {
   name: string;
@@ -30,10 +31,10 @@ export function NavProjects({ projects }: ProjectListProps) {
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild size={isMobile ? "sm" : "lg"}>
-              <a href={item.url}>
+              <Link href={item.url}>
                 <item.icon/>
                 <span className='font-medium'>{item.name}</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
               {item.roll && (
             <DropdownMenu>
@@ -52,7 +53,9 @@ export function NavProjects({ projects }: ProjectListProps) {
                     {item.roll.map((roll, index) => (
                       <DropdownMenuItem key={index}>
                         <roll.icon />
+                        <Link href={roll.url}>
                         <span className='font-medium'>{roll.name}</span>
+                        </Link>
                       </DropdownMenuItem>
                     ))}
                   </>
