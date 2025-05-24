@@ -31,7 +31,7 @@ export const Header = () => {
         </div>
         <div className="flex justify-end w-full gap-4">
           <Button variant="outline" asChild>
-            <Link href="/sign-in">Sign in</Link>
+            <Link href="/dashboard">Sign in</Link>
           </Button>
           <Button asChild>
             <Link href="/register">Register</Link>
