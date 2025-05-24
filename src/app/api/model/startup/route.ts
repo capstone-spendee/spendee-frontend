@@ -1,8 +1,6 @@
-
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
-  
   try {
     const data = await request.json();
     const response = await fetch('https://speende-1-ml-325126223708.europe-west1.run.app/predict', {
@@ -16,7 +14,7 @@ export async function POST(request: Request) {
     console.log(result);
     return NextResponse.json(result);
   } catch (error) {
-    console.log('terjadi error saat mengirim data ke server' + error)
-    return error;
+    console.log('terjadi error saat mengirim data ke server' + error);
+    return NextResponse.json({ error: 'Internal Server Error', detail: String(error) }, { status: 500 });
   }
 }
