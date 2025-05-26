@@ -1,16 +1,16 @@
 'use client';
 
-import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessagesSquare, MessageSquareText, User, Bitcoin } from 'lucide-react';
+import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessagesSquare, Repeat, User } from 'lucide-react';
 import type * as React from 'react';
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import Image from 'next/image';
 import logo from '../../public/image/logo.png';
 import { NavMain } from './nav-main';
 import { NavProjects } from './nav-projects';
 import { NavSecondary } from './nav-secondary';
 import { NavUser } from './nav-user';
-import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 
 const data = {
   user: {
@@ -69,19 +69,19 @@ const data = {
       ],
     },
     {
-      name: 'History Eligibility',
-      url: '/dashboard/history',
-      icon: GalleryHorizontalEnd,
-    },
-    {
       name: 'Consultation Ai',
       url: '/dashboard',
       icon: MessagesSquare,
     },
     {
+      name: 'History Eligibility',
+      url: '/dashboard/history',
+      icon: GalleryHorizontalEnd,
+    },
+    {
       name: 'IDR to USD',
       url: '/dashboard/convert',
-      icon: Bitcoin,
+      icon: Repeat,
     },
   ],
 };
