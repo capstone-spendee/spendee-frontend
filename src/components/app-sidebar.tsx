@@ -6,11 +6,12 @@ import type * as React from 'react';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import Image from 'next/image';
-import logo from '../../public/image/logo.png';
+import logo from '../../public/image/new-log.png';
 import { NavMain } from './nav-main';
 import { NavProjects } from './nav-projects';
 import { NavSecondary } from './nav-secondary';
 import { NavUser } from './nav-user';
+import Link from 'next/link';
 
 const data = {
   user: {
@@ -70,7 +71,7 @@ const data = {
     },
     {
       name: 'Consultation Ai',
-      url: '/dashboard',
+      url: '/dashboard/consultation',
       icon: MessagesSquare,
     },
     {
@@ -100,14 +101,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className=""
             >
-              <a href="#">
+              <Link href="/dashboard">
                 <Image
                   src={logo}
                   alt="logo"
-                  width={110}
-                  height={110}
+                  width={90}
+                  height={90}
                 />
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

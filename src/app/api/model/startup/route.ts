@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const response = await fetch('https://speende-1-ml-325126223708.europe-west1.run.app/predict', {
+    const response = await fetch(`${process.env.API_MODEL_STARTUP}/predict`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

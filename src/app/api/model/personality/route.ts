@@ -4,7 +4,7 @@ import * as cheerio from 'cheerio';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const response = await fetch('https://speende-fitur2-325126223708.us-central1.run.app/predict', {
+    const response = await fetch(`${process.env.API_MODEL_PERSONALITY}/predict`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
