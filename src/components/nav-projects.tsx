@@ -1,9 +1,8 @@
 'use client';
 
-import { MoreHorizontal, type LucideIcon } from 'lucide-react';
+import { type LucideIcon } from 'lucide-react';
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
+import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
 import Link from 'next/link';
 
 interface Roll {
@@ -36,7 +35,7 @@ export function NavProjects({ projects }: ProjectListProps) {
                 <span className='font-medium px-1.5'>{item.name}</span>
               </Link>
             </SidebarMenuButton>
-              {item.roll && (
+              {/* {item.roll && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
@@ -61,7 +60,7 @@ export function NavProjects({ projects }: ProjectListProps) {
                   </>
                 </DropdownMenuContent>
             </DropdownMenu>
-              )}
+              )} */}
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

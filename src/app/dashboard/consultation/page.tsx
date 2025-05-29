@@ -76,7 +76,7 @@ export default function ConsultationAi() {
                     by="line"
                     as="p"
                   >
-                    Mengetik...
+                    Wait...
                   </TextAnimate>
                 </p>
               </div>

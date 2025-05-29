@@ -1,29 +1,50 @@
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle
-} from "@/components/ui/alert-dialog"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import Image from 'next/image';
+import Link from 'next/link';
+import logo from '@/../public/image/new-log.png';
 
-export default function AlertDialogPersonlity() {
+interface PropsResponse {
+  responseMessage: string | undefined;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export default function AlertDialogPersonality(props: PropsResponse) {
+  const parsedResponse = props.responseMessage ? props.responseMessage : null;
+
   return (
-    <AlertDialog>
+    <AlertDialog
+      open={props.open}
+      onOpenChange={props.onOpenChange}
+    >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            hola
+          <AlertDialogTitle className="flex justify-between">
+            Your Eligibility
+            <Image
+              src={logo}
+              alt="logo"
+              width={70}
+            />
+          </AlertDialogTitle>
+          <AlertDialogDescription asChild>
+            {parsedResponse && (
+              <div className="space-y-3 text-start">
+                <>
+                  <strong>Result:</strong>
+                  <p>{parsedResponse}</p>
+                </>
+              </div>
+            )}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Again</AlertDialogCancel>
-          <AlertDialogAction>Save Data</AlertDialogAction>
+          <AlertDialogCancel>Check Again</AlertDialogCancel>
+          <Link href="/dashboard/history">
+            <AlertDialogAction className="w-full">Save to History</AlertDialogAction>
+          </Link>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }

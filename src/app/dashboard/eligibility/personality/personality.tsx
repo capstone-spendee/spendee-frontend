@@ -1,4 +1,3 @@
-import { toast } from 'sonner';
 import z from 'zod';
 import { personalitySchema, transformPersonalityData } from './zodSchemas';
 
@@ -20,7 +19,6 @@ const validated = personalitySchema.parse(data);
     const result = await response.text();
     console.log(result);
     console.log(payload);
-    toast.info(result);
     return result;
   } catch (error) {
     console.log('terjadi kesalahan saat mengirim data inputan' + error);

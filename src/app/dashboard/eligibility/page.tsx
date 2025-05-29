@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Rocket, User } from 'lucide-react';
 import PersonalityForm from './personality/pesonalityForm';
 import StartupForm from './startup/startupForm';
 
@@ -6,11 +7,11 @@ export default function Page() {
   return (
     <Tabs
       defaultValue="startup"
-      className="w-full"
+      className="w-full" 
     >
-      <TabsList className="grid grid-cols-2">
-        <TabsTrigger value="startup">Startup</TabsTrigger>
-        <TabsTrigger value="personality">Personality</TabsTrigger>
+      <TabsList className="grid grid-cols-2 rounded-2xl content-center ml-5 transition delay-150">
+        <TabsTrigger value="startup" className='gap-3 rounded-xl p-1.5 px-3'><Rocket /> Startup</TabsTrigger>
+        <TabsTrigger value="personality" className='gap-3 rounded-xl p-1.5 px-3'><User /> Personality</TabsTrigger>
       </TabsList>
       <TabsContent value="personality">
         <PersonalityForm />

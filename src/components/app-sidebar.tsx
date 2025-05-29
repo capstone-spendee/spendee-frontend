@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessagesSquare, Repeat, User } from 'lucide-react';
+import { BookOpen, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessagesSquare, Repeat } from 'lucide-react';
 import type * as React from 'react';
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
@@ -56,18 +56,6 @@ const data = {
       name: 'Check Eligibility',
       url: '/dashboard/eligibility',
       icon: ListTodo,
-      roll: [
-        {
-          name: 'personality',
-          url: '#',
-          icon: User,
-        },
-        {
-          name: 'startup',
-          url: '#',
-          icon: Building2,
-        },
-      ],
     },
     {
       name: 'SpendeeBot',
