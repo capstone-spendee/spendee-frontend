@@ -3,15 +3,15 @@
 import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessagesSquare, Repeat, User } from 'lucide-react';
 import type * as React from 'react';
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import Image from 'next/image';
-import logo from '../../public/image/new-log.png';
+import Link from 'next/link';
+import logo from '../../public/image/icon.png';
 import { NavMain } from './nav-main';
 import { NavProjects } from './nav-projects';
 import { NavSecondary } from './nav-secondary';
 import { NavUser } from './nav-user';
-import Link from 'next/link';
 
 const data = {
   user: {
@@ -70,17 +70,17 @@ const data = {
       ],
     },
     {
-      name: 'Consultation Ai',
+      name: 'SpendeeBot',
       url: '/dashboard/consultation',
       icon: MessagesSquare,
     },
     {
-      name: 'History Eligibility',
+      name: 'History ',
       url: '/dashboard/history',
       icon: GalleryHorizontalEnd,
     },
     {
-      name: 'IDR to USD',
+      name: 'IDR - USD',
       url: '/dashboard/convert',
       icon: Repeat,
     },
@@ -95,21 +95,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     >
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              asChild
-              className=""
-            >
-              <Link href="/dashboard">
-                <Image
-                  src={logo}
-                  alt="logo"
-                  width={90}
-                  height={90}
-                />
-              </Link>
-            </SidebarMenuButton>
+          <SidebarMenuItem className='p-2 '>
+            <Link href="/dashboard">
+              <Image
+                src={logo}
+                alt="logo"
+                width={40}
+                // height={90}
+              />
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
