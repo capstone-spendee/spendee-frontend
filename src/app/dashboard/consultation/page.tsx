@@ -19,6 +19,10 @@ export default function ConsultationAi() {
       toast.info('feature sedang dalam pengembangan 😡');
       return;
     }
+    if(!message){
+      toast.error('Please input a message');
+      return;
+    }
 
     const userMessage = message;
     setChats((prev) => [...prev, { sender: 'You', message: userMessage }]);
@@ -57,7 +61,7 @@ export default function ConsultationAi() {
                 <div
                   key={index}
                   className={`max-w-[60%] w-fit p-2 px-5 mt-2 shadow-sm ${
-                    chat.sender === 'You' ? 'ml-auto bg-muted-foreground text-secondary rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl text-right' : 'mr-auto bg-sidebar-accent rounded-tl-2xl rounded-tr-2xl rounded-br-2xl text-left'
+                    chat.sender === 'You' ? 'ml-auto bg-muted-foreground text-secondary rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl border-l-2 text-right' : 'mr-auto bg-sidebar rounded-tl-2xl rounded-tr-2xl rounded-br-2xl border-l-2 text-left'
                   }`}
                 >
                   <p className="text-sm font-light mt-1 whitespace-pre-wrap">{chat.message}</p>

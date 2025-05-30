@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Mona_Sans } from 'next/font/google';
+import { Geist, Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './components/theme-provider';
 
@@ -8,8 +8,8 @@ const geistSans = Geist({
   subsets: ['latin'],
 });
 
-const monaSans = Mona_Sans({
-  weight: '400',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
 });
 
@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body className={`${geistSans.variable} ${monaSans.className} antialiased`}>
+      <body className={`${geistSans.variable} ${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

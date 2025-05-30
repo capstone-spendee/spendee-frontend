@@ -76,7 +76,7 @@ export default function FAQPage() {
                   )}
                 </button>
                 {openIndex === idx && (
-                  <div className="pb-5 pl-3 pr-8 font-extralight sm:text-base animate-fade-in">
+                  <div className="pb-5 pl-3 pr-8 font-normal sm:text-base animate-fade-in">
                     {faq.answer}
                   </div>
                 )}
