@@ -21,24 +21,16 @@ const data = {
   navMain: [
     {
       title: 'Documentation',
-      url: '#',
+      url: '/dashboard ',
       icon: BookOpen,
       items: [
         {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
           title: 'How to use',
-          url: '#',
-        },
-        {
-          title: 'Information',
-          url: '#',
+          url: '/dashboard/documentation/howToUse',
         },
         {
           title: 'FAQ',
-          url: '#',
+          url: '/dashboard/documentation/FAQ',
         },
       ],
     },
