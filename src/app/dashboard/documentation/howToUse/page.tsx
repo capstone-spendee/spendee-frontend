@@ -25,29 +25,29 @@ export default function HowToUsePage() {
   return (
     <div className="min-h-screen bg-white px-4 py-10 sm:px-12">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-green-900">Cara Menggunakan Spendee</h1>
-        <p className="text-gray-600 mb-8 text-base sm:text-lg">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2 ">Cara Menggunakan Spendee</h1>
+        <p className="mb-8 text-base sm:text-lg">
           Ikuti langkah-langkah berikut untuk memulai menggunakan aplikasi Spendee.
         </p>
         <ol className="space-y-6">
           {steps.map((step, idx) => (
             <li key={idx} className="flex items-start gap-4">
               <div className="flex-shrink-0 mt-1">
-                <CheckCircle className="w-7 h-7 text-green-600" />
+                <CheckCircle className="w-7 h-7 " />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold text-lg text-green-900">{step.title}</span>
+                  <span className="font-semibold text-lg ">{step.title}</span>
                   {idx < steps.length - 1 && (
-                    <ArrowRight className="w-4 h-4 text-green-400" />
+                    <ArrowRight className="w-4 h-4 " />
                   )}
                 </div>
-                <p className="text-gray-700 mt-1">{step.description}</p>
+                <p className=" mt-1">{step.description}</p>
               </div>
             </li>
           ))}
         </ol>
-        <div className="mt-10 text-center text-gray-500 text-sm">
+        <div className="mt-10 text-center text-sm">
           Butuh bantuan lebih lanjut? Silakan cek halaman FAQ atau hubungi support Spendee.
         </div>
       </div>

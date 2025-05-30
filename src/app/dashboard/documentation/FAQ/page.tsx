@@ -54,7 +54,7 @@ export default function FAQPage() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Left: Title */}
         <div className="col-span-1 flex flex-col items-start pt-4">
-          <span className="text-green-600 font-medium mb-2">FAQ</span>
+          <span className="font-medium mb-2">FAQ</span>
           <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
             Pertanyaan Seputar <br /> Spendee
           </h1>
@@ -76,7 +76,7 @@ export default function FAQPage() {
                   )}
                 </button>
                 {openIndex === idx && (
-                  <div className="pb-5 pl-1 pr-8 text-gray-600 text-sm sm:text-base animate-fade-in">
+                  <div className="pb-5 pl-1 pr-8 text-sm sm:text-base animate-fade-in">
                     {faq.answer}
                   </div>
                 )}
