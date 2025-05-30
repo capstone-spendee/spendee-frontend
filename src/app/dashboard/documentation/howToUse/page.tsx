@@ -23,7 +23,7 @@ const steps = [
 
 export default function HowToUsePage() {
   return (
-    <div className="min-h-screen bg-white px-4 py-10 sm:px-12">
+    <div className=" px-4 py-10 sm:px-12 ">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold mb-2 ">Cara Menggunakan Spendee</h1>
         <p className="mb-8 text-base sm:text-lg">

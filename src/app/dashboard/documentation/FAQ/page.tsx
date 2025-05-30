@@ -50,7 +50,7 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-white px-4 py-10 sm:px-12">
+    <div className="px-4 py-10 sm:px-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Left: Title */}
         <div className="col-span-1 flex flex-col items-start pt-4">
