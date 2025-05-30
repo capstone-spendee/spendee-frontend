@@ -70,13 +70,13 @@ export default function FAQPage() {
                 >
                   <span className="text-base sm:text-lg font-medium">{faq.question}</span>
                   {openIndex === idx ? (
-                    <Minus className="w-5 h-5" />
+                    <Minus className="w-4 h-4" />
                   ) : (
-                    <Plus className="w-5 h-5" />
+                    <Plus className="w-4 h-4" />
                   )}
                 </button>
                 {openIndex === idx && (
-                  <div className="pb-5 pl-1 pr-8 text-sm sm:text-base animate-fade-in">
+                  <div className="pb-5 pl-3 pr-8 font-extralight sm:text-base animate-fade-in">
                     {faq.answer}
                   </div>
                 )}
