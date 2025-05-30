@@ -36,6 +36,15 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+// Type definition
+export type Payment = {
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+}
+
+// Sample data
 const data: Payment[] = [
   {
     id: "m5gr84i9",
@@ -69,14 +78,8 @@ const data: Payment[] = [
   },
 ]
 
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
-
-export const columns: ColumnDef<Payment>[] = [
+// Column definitions
+const columns: ColumnDef<Payment>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -167,7 +170,8 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ]
 
-export default function TableDemo() {
+// Main component that should be the default export for the page
+export default function HistoryPage() {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
