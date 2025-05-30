@@ -40,7 +40,9 @@ export default function AlertDialogResponse(props: PropsResponse) {
                 </>
                 <>
                   <strong>Negative Reasons:</strong>
-                  <p>{parsedResponse.negative_reasons}</p>
+                  <ul className="list-disc pl-5">{parsedResponse.negative_reasons.map((reason: string, index: number ) =>(
+                    <li key={index}>{reason}</li>
+                  ))}</ul>
                 </>
 
               </div>

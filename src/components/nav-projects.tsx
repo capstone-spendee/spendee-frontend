@@ -30,37 +30,11 @@ export function NavProjects({ projects }: ProjectListProps) {
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild size={isMobile ? "sm" : "lg"}>
-              <Link href={item.url} className='px-2'>
+              <Link href={item.url} className='px-3'>
                 <item.icon />
                 <span className='font-medium px-1.5'>{item.name}</span>
               </Link>
             </SidebarMenuButton>
-              {/* {item.roll && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className="w-48"
-                  side={isMobile ? 'bottom' : 'right'}
-                  align={isMobile ? 'end' : 'start'}
-                >
-                  <>
-                    {item.roll.map((roll, index) => (
-                      <DropdownMenuItem key={index}>
-                        <roll.icon />
-                        <Link href={roll.url}>
-                        <span className='font-normal'>{roll.name}</span>
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </>
-                </DropdownMenuContent>
-            </DropdownMenu>
-              )} */}
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

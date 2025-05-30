@@ -82,7 +82,7 @@ export default function StartupForm() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="space-y-4 space-x-6 grid grid-cols-2 md:grid-cols-4 pb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pb-4">
                 <FormField
                   control={form.control}
                   name="kategori"
