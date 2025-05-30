@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Progress } from '@/components/ui/progress';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,12 +15,12 @@ import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import z from 'zod';
 import { formatRupiah } from '../formtaIdr';
 import KategoriOption from './kategoriOption';
 import { submitStartupData } from './startup';
 import { startupSchema } from './zodSchemas';
-import { toast } from 'sonner';
 
 export default function StartupForm() {
   const [loading, setLoading] = useState(false);
@@ -43,6 +44,14 @@ export default function StartupForm() {
     },
   });
 
+  const formValues = form.watch();
+  const totalFields = Object.keys(formValues).length;
+  const filledFields = Object.values(formValues).filter((val) => {
+    if (typeof val === 'string') return val.trim() !== '';
+    return val !== null && val !== undefined && val !== 0;
+  }).length;
+ const progressPercent = Math.round((filledFields / totalFields) * 100);
+
   const onSubmit = async () => {
     setLoading(true);
     toast.info('model sedang memproses data anda...');
@@ -60,14 +69,20 @@ export default function StartupForm() {
   return (
     <>
       <Card className="border-none shadow-none">
-        <CardHeader>
-          <CardTitle>Startup</CardTitle>
-          <CardDescription className="text-gray-500">Check your eligibility for you startup.</CardDescription>
+        <CardHeader className='flex justify-between'>
+          <div>
+            <CardTitle>Startup</CardTitle>
+            <CardDescription className="text-muted-foreground ">Check your eligibility for you startup.</CardDescription>
+          </div>
+          <div className="sm:w-[90px] md:w-[200px]">
+            <Progress value={progressPercent}  />
+            <p className={`text-xs text-right mt-1  ${progressPercent < 100 ? 'text-muted-foreground' : 'text-green-600'}`}>{progressPercent}%</p>
+          </div>
         </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="space-y-4 space-x-6 grid grid-cols-2 md:grid-cols-4 pb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pb-4">
                 <FormField
                   control={form.control}
                   name="kategori"

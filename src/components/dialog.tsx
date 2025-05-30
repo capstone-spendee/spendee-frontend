@@ -1,5 +1,7 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import Image from 'next/image';
 import Link from 'next/link';
+import logo from '../../public/image/new-log.png';
 
 interface PropsResponse {
   responseMessage: string | undefined;
@@ -17,10 +19,12 @@ export default function AlertDialogResponse(props: PropsResponse) {
     >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Your Eligibility</AlertDialogTitle>
+          <AlertDialogTitle className='flex justify-between'>Your Eligibility
+            <Image src={logo} alt='logo' width={70}/>
+          </AlertDialogTitle>
           <AlertDialogDescription  asChild>
             {parsedResponse && (
-              <div className="space-y-3">
+              <div className="space-y-3 text-start">
                 <>
                   <strong>Result:</strong>
                   <p>{parsedResponse.result}</p>
@@ -36,17 +40,19 @@ export default function AlertDialogResponse(props: PropsResponse) {
                 </>
                 <>
                   <strong>Negative Reasons:</strong>
-                  <p>{parsedResponse.negative_reasons}</p>
+                  <ul className="list-disc pl-5">{parsedResponse.negative_reasons.map((reason: string, index: number ) =>(
+                    <li key={index}>{reason}</li>
+                  ))}</ul>
                 </>
 
               </div>
             )}
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
+        <AlertDialogFooter >
           <AlertDialogCancel>Check Again</AlertDialogCancel>
           <Link href="/dashboard/history">
-            <AlertDialogAction>Save to History</AlertDialogAction>
+            <AlertDialogAction className='w-full'>Save to History</AlertDialogAction>
           </Link>
         </AlertDialogFooter>
       </AlertDialogContent>

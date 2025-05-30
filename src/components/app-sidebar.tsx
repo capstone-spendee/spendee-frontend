@@ -1,12 +1,13 @@
 'use client';
 
-import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessagesSquare, Repeat, User } from 'lucide-react';
+import { BookOpen, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessagesSquare, Repeat } from 'lucide-react';
 import type * as React from 'react';
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import Image from 'next/image';
-import logo from '../../public/image/logo.png';
+import Link from 'next/link';
+import logo from '../../public/image/icon.png';
 import { NavMain } from './nav-main';
 import { NavProjects } from './nav-projects';
 import { NavSecondary } from './nav-secondary';
@@ -47,31 +48,19 @@ const data = {
       name: 'Check Eligibility',
       url: '/dashboard/eligibility',
       icon: ListTodo,
-      roll: [
-        {
-          name: 'personality',
-          url: '#',
-          icon: User,
-        },
-        {
-          name: 'startup',
-          url: '#',
-          icon: Building2,
-        },
-      ],
     },
     {
-      name: 'Consultation Ai',
-      url: '/dashboard',
+      name: 'SpendeeBot',
+      url: '/dashboard/consultation',
       icon: MessagesSquare,
     },
     {
-      name: 'History Eligibility',
+      name: 'History ',
       url: '/dashboard/history',
       icon: GalleryHorizontalEnd,
     },
     {
-      name: 'IDR to USD',
+      name: 'IDR - USD',
       url: '/dashboard/convert',
       icon: Repeat,
     },
@@ -86,21 +75,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     >
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              asChild
-              className=""
-            >
-              <a href="#">
-                <Image
-                  src={logo}
-                  alt="logo"
-                  width={110}
-                  height={110}
-                />
-              </a>
-            </SidebarMenuButton>
+          <SidebarMenuItem className='p-2 '>
+            <Link href="/dashboard">
+              <Image
+                src={logo}
+                alt="logo"
+                width={40}
+                // height={90}
+              />
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
