@@ -14,8 +14,9 @@ export default function ConsultationAi() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!message) {
-      toast.error('Please input a message');
+    if (message) { // !message
+      // toast.error('Please input a message');
+      toast.info('feature sedang dalam pengembangan 😡');
       return;
     }
 
