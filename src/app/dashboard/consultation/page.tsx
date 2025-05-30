@@ -79,10 +79,11 @@ export default function ConsultationAi() {
           className="w-full gap-2 flex px-4 "
         >
           <Input
-            placeholder="Tanya SpendeeBot..."
+            placeholder="Tanya SpendeeBot... (feature sedang dalam pengembangan)"
             className="flex-1 p-4 rounded-3xl border"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            disabled
           />
           <Button
             type="submit"
