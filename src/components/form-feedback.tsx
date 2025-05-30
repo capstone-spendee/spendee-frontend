@@ -56,7 +56,7 @@ export default function FeedbackPage() {
     
   return (
     <div className="flex justify-center items-center min-h-[80vh] bg-gradient-to-br px-4">
-      <Card className="w-full max-w-xl shadow-lg rounded-2xl border ">
+      <Card className="w-full max-w-xl rounded-2xl">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-bold text-center">Any feedback for Spendee?</CardTitle>
           <CardDescription className="text-center text-base">
@@ -110,7 +110,7 @@ export default function FeedbackPage() {
                 required
               />
             </div>
-            <Button type="submit" className="w-full mt-2" disabled={loading}>
+            <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Sending...' : 'Send Feedback'}
             </Button>
           </form>

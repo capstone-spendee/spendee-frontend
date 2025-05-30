@@ -33,7 +33,7 @@ export default function HowToUsePage() {
           {steps.map((step, idx) => (
             <li key={idx} className="flex items-start gap-4">
               <div className="flex-shrink-0 mt-1">
-                <CheckCircle className="w-7 h-7 " />
+                <CheckCircle className="w-7 h-5 " />
               </div>
               <div>
                 <div className="flex items-center gap-2">

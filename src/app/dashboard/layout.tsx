@@ -29,7 +29,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage className='hidden md:block'>{path}</BreadcrumbPage>
+                  <BreadcrumbPage className='hidden md:block text-muted-foreground'>{path}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
