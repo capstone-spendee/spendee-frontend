@@ -9,15 +9,17 @@ import {
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-interface PointerProps extends Omit<HTMLMotionProps<"div">, "ref"> {}
+interface PointerProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
+  debugMode?: boolean;
+}
 
 /**
  * A custom pointer component that displays an animated cursor.
  * Add this as a child to any component to enable a custom pointer when hovering.
  * You can pass custom children to render as the pointer.
  *
- * @component
- * @param {PointerProps} props - The component props
+  @component
+  @param {PointerProps} props - The component props
  */
 export function Pointer({
   className,
