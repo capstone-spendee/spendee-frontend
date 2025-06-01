@@ -17,7 +17,7 @@ export default function AlertDialogPersonality(props: PropsResponse) {
       open={props.open}
       onOpenChange={props.onOpenChange}
     >
-      <AlertDialogContent>
+      <AlertDialogContent className='border-3 md:border-5 rounded-3xl'>
         <AlertDialogHeader>
           <AlertDialogTitle className="flex justify-between">
             Your Eligibility
