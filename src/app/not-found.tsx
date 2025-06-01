@@ -1,4 +1,4 @@
-import logo from '../../public/image/logo.png'
+import logo from '../../public/image/new-logo.png'
 import Image from 'next/image'
  
 export default function NotFound() {

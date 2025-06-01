@@ -1,7 +1,7 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../../public/image/new-log.png';
+import logo from '../../public/image/new-logo.png';
 
 interface PropsResponse {
   responseMessage: string | undefined;
