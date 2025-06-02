@@ -1,9 +1,9 @@
 'use client';
 
-import { MoreHorizontal, type LucideIcon } from 'lucide-react';
+import { type LucideIcon } from 'lucide-react';
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
+import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
+import Link from 'next/link';
 
 interface Roll {
   name: string;
@@ -30,35 +30,11 @@ export function NavProjects({ projects }: ProjectListProps) {
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild size={isMobile ? "sm" : "lg"}>
-              <a href={item.url}>
-                <item.icon/>
-                <span className='font-medium'>{item.name}</span>
-              </a>
+              <Link href={item.url} className='px-3'>
+                <item.icon />
+                <span className='font-medium px-1.5'>{item.name}</span>
+              </Link>
             </SidebarMenuButton>
-              {item.roll && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className="w-48"
-                  side={isMobile ? 'bottom' : 'right'}
-                  align={isMobile ? 'end' : 'start'}
-                >
-                  <>
-                    {item.roll.map((roll, index) => (
-                      <DropdownMenuItem key={index}>
-                        <roll.icon />
-                        <span className='font-medium'>{roll.name}</span>
-                      </DropdownMenuItem>
-                    ))}
-                  </>
-                </DropdownMenuContent>
-            </DropdownMenu>
-              )}
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

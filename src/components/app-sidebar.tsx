@@ -1,15 +1,17 @@
 'use client';
 
-import { BookOpen, Building2, GalleryHorizontalEnd, ListTodo, MessagesSquare, MessageSquareText, User, Bitcoin } from 'lucide-react';
+import { BookOpenCheck, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessageSquareTextIcon, MessagesSquare, Repeat } from 'lucide-react';
 import type * as React from 'react';
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import Image from 'next/image';
-import logo from '../../public/image/logo.png';
-import { NavMain } from './nav-main';
+import Link from 'next/link';
+import logo from '../../public/image/icon.png';
+import { NavDocumentation } from './nav-main';
 import { NavProjects } from './nav-projects';
 import { NavSecondary } from './nav-secondary';
 import { NavUser } from './nav-user';
+
 import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -21,30 +23,17 @@ const data = {
     email: 'dev@spendee.com',
     avatar: '/avatars/shadcn.jpg',
   },
-  navMain: [
+  documentation: [
     {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'How to use',
-          url: '#',
-        },
-        {
-          title: 'Information',
-          url: '#',
-        },
-        {
-          title: 'FAQ',
-          url: '#',
-        },
-      ],
+      name: 'How to use',
+      url: '/dashboard/howtouse',
+      icon: BookOpenCheck,
     },
+    {
+      name: 'FAQ',
+      url: '/dashboard/faq',
+      icon: MessageSquareTextIcon,
+    }
   ],
   navSecondary: [
     {
@@ -58,33 +47,21 @@ const data = {
       name: 'Check Eligibility',
       url: '/dashboard/eligibility',
       icon: ListTodo,
-      roll: [
-        {
-          name: 'personality',
-          url: '#',
-          icon: User,
-        },
-        {
-          name: 'startup',
-          url: '#',
-          icon: Building2,
-        },
-      ],
     },
     {
-      name: 'History Eligibility',
+      name: 'SpendeeBot',
+      url: '/dashboard/consultation',
+      icon: MessagesSquare,
+    },
+    {
+      name: 'History ',
       url: '/dashboard/history',
       icon: GalleryHorizontalEnd,
     },
     {
-      name: 'Consultation Ai',
-      url: '/dashboard',
-      icon: MessagesSquare,
-    },
-    {
-      name: 'IDR to USD',
+      name: 'IDR - USD',
       url: '/dashboard/convert',
-      icon: Bitcoin,
+      icon: Repeat,
     },
   ],
 };
@@ -104,28 +81,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     >
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              asChild
-              className=""
-            >
-              <a href="#">
-                <Image
-                  src={logo}
-                  alt="logo"
-                  width={110}
-                  height={110}
-                />
-              </a>
-            </SidebarMenuButton>
+          <SidebarMenuItem className='p-2 '>
+            <Link href="/dashboard">
+              <Image
+                src={logo}
+                alt="logo"
+                width={40}
+                // height={90}
+              />
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavProjects projects={data.projects} />
-        <NavMain items={data.navMain} />
-        <DropdownMenuSeparator />
+        <NavDocumentation documents={data.documentation} />
+        {/* <DropdownMenuSeparator /> */}
         <NavSecondary
           items={data.navSecondary}
           className="mt-auto"

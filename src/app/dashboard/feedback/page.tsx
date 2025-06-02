@@ -1,9 +1,4 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import React from 'react'
+import FeedbackPage from "@/components/form-feedback";
 
 export default function FeedbackForm() {
   return (
@@ -32,5 +27,6 @@ export default function FeedbackForm() {
       </CardFooter>
     </Card>
     </div>
+    <FeedbackPage></FeedbackPage>
   )
 }
