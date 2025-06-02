@@ -12,6 +12,11 @@ import { NavProjects } from './nav-projects';
 import { NavSecondary } from './nav-secondary';
 import { NavUser } from './nav-user';
 
+import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
+import { useCallback } from 'react';
+
 const data = {
   user: {
     name: 'frontend',
@@ -62,6 +67,13 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const router = useRouter();
+
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem('token');
+    router.push('/sign-in');
+  }, [router]);
+
   return (
     <Sidebar
       variant="inset"
@@ -91,7 +103,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <div className="flex flex-col gap-2 w-full">
+          <NavUser user={data.user} />
+          <Button
+            variant="outline"
+            className="w-full mt-2"
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        </div>
       </SidebarFooter>
     </Sidebar>
   );
