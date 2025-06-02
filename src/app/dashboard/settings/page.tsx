@@ -52,6 +52,22 @@ const handleUpdate = async (e: React.FormEvent) => {
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.message || "Gagal update profil");
 
+      if (data.user) {
+      // Ambil data lama
+      const oldId = localStorage.getItem("userId");
+      const oldName = localStorage.getItem("userName");
+      const oldEmail = localStorage.getItem("userEmail");
+      const oldPic = localStorage.getItem("userProfilePic");
+
+      // Simpan hanya jika berbeda
+      if (data.user._id !== oldId) localStorage.setItem("userId", data.user._id);
+      if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "");
+      if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "");
+      if (data.user.profilePic !== oldPic)
+        localStorage.setItem("userProfilePic", data.user.profilePic || "");
+    }
+
+    console.log("Response data:", data);
     alert("Profil berhasil diperbarui!");
   } catch (error) {
     alert(error instanceof Error ? error.message : "Gagal memperbarui profil.");
