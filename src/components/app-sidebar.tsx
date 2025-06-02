@@ -12,7 +12,6 @@ import { NavProjects } from './nav-projects';
 import { NavSecondary } from './nav-secondary';
 import { NavUser } from './nav-user';
 
-import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
