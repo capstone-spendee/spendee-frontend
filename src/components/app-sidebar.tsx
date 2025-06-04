@@ -1,7 +1,7 @@
 'use client';
 
 import { BookOpenCheck, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessageSquareTextIcon, MessagesSquare, Repeat } from 'lucide-react';
-import type * as React from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import Image from 'next/image';
@@ -14,14 +14,14 @@ import { NavUser } from './nav-user';
 
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
+
+const DEFAULT_USER = {
+  name: 'User1',
+  email: 'user@email.com',
+  avatar: '/avatars/shadcn.jpg',
+};
 
 const data = {
-  user: {
-    name: 'frontend',
-    email: 'dev@spendee.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   documentation: [
     {
       name: 'How to use',
@@ -67,9 +67,27 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
+  const [user, setUser] = useState(DEFAULT_USER);
+
+  // Ambil data user dari localStorage
+  const syncUserFromLocalStorage = () => {
+    const name = localStorage.getItem('userName') || DEFAULT_USER.name;
+    const email = localStorage.getItem('userEmail') || DEFAULT_USER.email;
+    const avatar = localStorage.getItem('userProfilePic') || DEFAULT_USER.avatar;
+    setUser({ name, email, avatar });
+  };
+
+  useEffect(() => {
+    syncUserFromLocalStorage();
+    // Listen custom event
+    const handler = () => syncUserFromLocalStorage();
+    window.addEventListener('userProfileUpdated', handler);
+    return () => window.removeEventListener('userProfileUpdated', handler);
+  }, []);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
+    localStorage.clear();
     router.push('/sign-in');
   }, [router]);
 
@@ -103,7 +121,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter>
         <div className="flex flex-col gap-2 w-full">
-          <NavUser user={data.user} />
+          <NavUser user={user} />
           <Button
             variant="outline"
             className="w-full mt-2"

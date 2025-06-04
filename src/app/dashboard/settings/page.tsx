@@ -65,6 +65,8 @@ const handleUpdate = async (e: React.FormEvent) => {
       if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "");
       if (data.user.profilePic !== oldPic)
         localStorage.setItem("userProfilePic", data.user.profilePic || "");
+
+      window.dispatchEvent(new Event("userProfileUpdated")); // Emit event untuk update sidebar
     }
 
     console.log("Response data:", data);

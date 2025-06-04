@@ -31,7 +31,7 @@ export default function SignInPage() {
 
       const decoded = jwtDecode<{ id: string; email: string }>(data.token);
 
-      // validasi biar ga overwrite data sama
+      // validasi
       if (!localStorage.getItem("userId")) {
         localStorage.setItem("userId", decoded.id);
         localStorage.setItem("userEmail", decoded.email);
