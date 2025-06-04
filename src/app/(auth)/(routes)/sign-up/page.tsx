@@ -27,6 +27,9 @@ export default function SignUpPage() {
 
       if (!res.ok) throw new Error(data.message || "Registrasi gagal")
 
+      // Simpan username ke localStorage
+      localStorage.setItem("userName", username)
+
       window.location.href = "/sign-in"
     } catch (err) {
       if (err instanceof Error) {

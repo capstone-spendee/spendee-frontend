@@ -65,6 +65,13 @@ const data = {
   ],
 };
 
+function normalizeImageUrl(url: string) {
+  if (!url) return DEFAULT_USER.avatar;
+  if (url.startsWith("http")) return url;
+  if (url.startsWith("/")) return url;
+  return "/" + url;
+}
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
   const [user, setUser] = useState(DEFAULT_USER);
@@ -73,7 +80,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const syncUserFromLocalStorage = () => {
     const name = localStorage.getItem('userName') || DEFAULT_USER.name;
     const email = localStorage.getItem('userEmail') || DEFAULT_USER.email;
-    const avatar = localStorage.getItem('userProfilePic') || DEFAULT_USER.avatar;
+    const avatarRaw = localStorage.getItem('userProfilePic') || DEFAULT_USER.avatar;
+    const avatar = normalizeImageUrl(avatarRaw);
     setUser({ name, email, avatar });
   };
 

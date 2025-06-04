@@ -14,12 +14,14 @@ export default function Navbar() {
         height={4}
       />
       <div className="flex items-center gap-2">
-        <Button
-          variant={'outline'}
-          className="rounded-[20px] border-2"
-        >
-          Sign In
-        </Button>
+        <a href="/sign-in">
+          <Button
+            variant={'outline'}
+            className="rounded-[20px] border-2"
+          >
+            Sign In
+          </Button>
+        </a>
         <ModeToggle />
       </div>
     </div>
