@@ -15,7 +15,7 @@ export default function TooltipDemo(props: PropsToltip) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Info width={12} height={12} />
+          <Info width={12} height={12} className="opacity-50" />
         </TooltipTrigger>
         <TooltipContent>
           <p>{props.content}</p>
