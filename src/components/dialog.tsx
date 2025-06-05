@@ -1,7 +1,8 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
-import Link from 'next/link';
 import logo from '../../public/image/new-logo.png';
+import { toast } from 'sonner';
+import Link from 'next/link';
 
 interface PropsResponse {
   responseMessage: string | undefined;
@@ -12,17 +13,51 @@ interface PropsResponse {
 export default function AlertDialogResponse(props: PropsResponse) {
   const parsedResponse = props.responseMessage ? JSON.parse(props.responseMessage) : null;
 
+  const saveHistory = async () => {
+    if (parsedResponse?.result) {
+
+      const historyData = {
+        userId: {$oid:localStorage.getItem('userId')},
+        email: localStorage.getItem('userEmail'),
+        status: parsedResponse.result,
+        kategori: 'startup',
+      };
+      console.log(typeof historyData.userId);
+
+      try {
+        const res = await fetch('http://13.54.145.211:3000/api/prediction/simpan', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify(historyData),
+        });
+        const data = await res.text();
+        console.log(`Response: ${data}`);
+      } catch (err) {
+        toast.error('Something went wrong');
+        console.log(err);
+      }
+    }
+  };
+
   return (
     <AlertDialog
       open={props.open}
       onOpenChange={props.onOpenChange}
     >
-      <AlertDialogContent className='border-3 md:border-5 rounded-3xl'>
+      <AlertDialogContent className="border-3 md:border-5 rounded-3xl">
         <AlertDialogHeader>
-          <AlertDialogTitle className='flex justify-between'>Your Eligibility
-            <Image src={logo} alt='logo' width={70}/>
+          <AlertDialogTitle className="flex justify-between">
+            Your Eligibility
+            <Image
+              src={logo}
+              alt="logo"
+              width={70}
+            />
           </AlertDialogTitle>
-          <AlertDialogDescription  asChild>
+          <AlertDialogDescription asChild>
             {parsedResponse && (
               <div className="space-y-3 text-start">
                 <>
@@ -40,19 +75,25 @@ export default function AlertDialogResponse(props: PropsResponse) {
                 </>
                 <>
                   <strong>Negative Reasons:</strong>
-                  <ul className="list-disc pl-5">{parsedResponse.negative_reasons.map((reason: string, index: number ) =>(
-                    <li key={index}>{reason}</li>
-                  ))}</ul>
+                  <ul className="list-disc pl-5">
+                    {parsedResponse.negative_reasons.map((reason: string, index: number) => (
+                      <li key={index}>{reason}</li>
+                    ))}
+                  </ul>
                 </>
-
               </div>
             )}
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter >
+        <AlertDialogFooter>
           <AlertDialogCancel>Check Again</AlertDialogCancel>
           <Link href="/dashboard/history">
-            <AlertDialogAction className='w-full'>Save to History</AlertDialogAction>
+          <AlertDialogAction
+            className="w-full"
+            onClick={saveHistory}
+          >
+            Save to History
+          </AlertDialogAction>
           </Link>
         </AlertDialogFooter>
       </AlertDialogContent>
