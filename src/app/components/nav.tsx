@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import logo from '../../../public/image/logo.png';
 import { ModeToggle } from './theme-toggle';
+import InstallButton from './installButton';
 
 export default function Navbar() {
   return (
@@ -11,7 +12,7 @@ export default function Navbar() {
         src={logo}
         alt="Logo"
         width={43}
-        height={4}
+        // height={4}
       />
       <div className="flex items-center gap-2">
         <Button
@@ -20,6 +21,7 @@ export default function Navbar() {
         >
           Sign In
         </Button>
+        <InstallButton />
         <ModeToggle />
       </div>
     </div>
