@@ -1,0 +1,62 @@
+{
+  "name": "Spendee App",
+  "short_name": "spendee",
+  "description": "Check your eligibility for a loan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "oklch(0.205 0 0)",
+  "theme_color": "oklch(0.205 0 0)",
+  "screenshots": [
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "368x745",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile screenshot"
+    },
+    {
+      "src": "/screenshots/desktop.png",
+      "sizes": "943x530",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop screenshot"
+    }
+  ],
+  "icons": [
+    {
+      "src": "49x48.png",
+      "sizes": "49x48",
+      "type": "image/png"
+    },
+    {
+      "src": "72x71.png",
+      "sizes": "72x71",
+      "type": "image/png"
+    },
+    {
+      "src": "96x95.png",
+      "sizes": "96x95",
+      "type": "image/png"
+    },
+    {
+      "src": "144x142.png",
+      "sizes": "144x142",
+      "type": "image/png"
+    },
+    {
+      "src": "192x190.png",
+      "sizes": "192x190",
+      "type": "image/png"
+    },
+    {
+      "src": "256x253.png",
+      "sizes": "256x253",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
