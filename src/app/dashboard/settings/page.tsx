@@ -14,11 +14,9 @@ export default function EditProfilePage() {
   const [deleting, setDeleting] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  // Ambil data user dari localStorage saat mount
-  // Normalisasi path foto
   function normalizeImageUrl(url: string | null) {
-    if (!url) return "/avatars/shadcn.jpg";
-    if (url.startsWith("data:image")) return url; // base64
+    if (!url) return null; // Jangan return default avatar di sini
+    if (url.startsWith("data:image")) return url;
     if (url.startsWith("http")) return url;
     if (url.startsWith("/")) return url;
     return "/" + url;
@@ -31,8 +29,9 @@ export default function EditProfilePage() {
   
       setName(storedName);
       setEmail(storedEmail);
-  
-      if (storedPic) setPreview(normalizeImageUrl(storedPic));
+
+      // Hanya set preview jika ada foto
+      setPreview(storedPic ? normalizeImageUrl(storedPic) : null);
     }, []);
 
   // Preview foto sebelum upload
@@ -84,7 +83,8 @@ export default function EditProfilePage() {
         if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "");
         if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "");
         if (data.user.profilePic !== oldPic)
-          localStorage.setItem("userProfilePic", data.user.profilePic || "");
+          localStorage.setItem('userProfilePic', `http://13.54.145.211:3000/${data.user.profilePic}`);
+
 
         window.dispatchEvent(new Event("userProfileUpdated")); // Emit event untuk update sidebar
       }
@@ -181,7 +181,7 @@ export default function EditProfilePage() {
               />
               {preview && (
                 <Image
-                  src={normalizeImageUrl(preview)}
+                  src={preview}
                   alt="Preview"
                   width={56}
                   height={56}

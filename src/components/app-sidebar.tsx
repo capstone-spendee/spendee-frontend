@@ -1,65 +1,80 @@
-'use client';
+"use client";
 
-import { BookOpenCheck, GalleryHorizontalEnd, ListTodo, MessageSquareText, MessageSquareTextIcon, MessagesSquare, Repeat } from 'lucide-react';
-import { useEffect, useState, useCallback } from 'react';
+import {
+  BookOpenCheck,
+  GalleryHorizontalEnd,
+  ListTodo,
+  MessageSquareText,
+  MessageSquareTextIcon,
+  MessagesSquare,
+  Repeat,
+} from "lucide-react";
+import { useEffect, useState, useCallback } from "react";
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
-import Image from 'next/image';
-import Link from 'next/link';
-import logo from '../../public/image/icon.png';
-import { NavDocumentation } from './nav-main';
-import { NavProjects } from './nav-projects';
-import { NavSecondary } from './nav-secondary';
-import { NavUser } from './nav-user';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import Image from "next/image";
+import Link from "next/link";
+import logo from "../../public/image/icon.png";
+import { NavDocumentation } from "./nav-main";
+import { NavProjects } from "./nav-projects";
+import { NavSecondary } from "./nav-secondary";
+import { NavUser } from "./nav-user";
 
-import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const DEFAULT_USER = {
-  name: 'User1',
-  email: 'user@email.com',
-  avatar: '/avatars/shadcn.jpg',
+  name: "User1",
+  email: "user@email.com",
+  avatar: "/avatars/shadcn.jpg",
 };
 
 const data = {
   documentation: [
     {
-      name: 'How to use',
-      url: '/dashboard/howtouse',
+      name: "How to use",
+      url: "/dashboard/howtouse",
       icon: BookOpenCheck,
     },
     {
-      name: 'FAQ',
-      url: '/dashboard/faq',
+      name: "FAQ",
+      url: "/dashboard/faq",
       icon: MessageSquareTextIcon,
-    }
+    },
   ],
   navSecondary: [
     {
-      title: 'Feedback',
-      url: '/dashboard/feedback',
+      title: "Feedback",
+      url: "/dashboard/feedback",
       icon: MessageSquareText,
     },
   ],
   projects: [
     {
-      name: 'Check Eligibility',
-      url: '/dashboard/eligibility',
+      name: "Check Eligibility",
+      url: "/dashboard/eligibility",
       icon: ListTodo,
     },
     {
-      name: 'SpendeeBot',
-      url: '/dashboard/consultation',
+      name: "SpendeeBot",
+      url: "/dashboard/consultation",
       icon: MessagesSquare,
     },
     {
-      name: 'History ',
-      url: '/dashboard/history',
+      name: "History ",
+      url: "/dashboard/history",
       icon: GalleryHorizontalEnd,
     },
     {
-      name: 'IDR - USD',
-      url: '/dashboard/convert',
+      name: "IDR - USD",
+      url: "/dashboard/convert",
       icon: Repeat,
     },
   ],
@@ -78,10 +93,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   // Ambil data user dari localStorage
   const syncUserFromLocalStorage = () => {
-    const name = localStorage.getItem('userName') || DEFAULT_USER.name;
-    const email = localStorage.getItem('userEmail') || DEFAULT_USER.email;
-    const avatarRaw = localStorage.getItem('userProfilePic') || DEFAULT_USER.avatar;
-    const avatar = normalizeImageUrl(avatarRaw);
+    const name = localStorage.getItem("userName") ?? DEFAULT_USER.name;
+    const email = localStorage.getItem("userEmail") ?? DEFAULT_USER.email;
+    const avatar = normalizeImageUrl(
+      localStorage.getItem("userProfilePic") ?? DEFAULT_USER.avatar
+    );
     setUser({ name, email, avatar });
   };
 
@@ -89,24 +105,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     syncUserFromLocalStorage();
     // Listen custom event
     const handler = () => syncUserFromLocalStorage();
-    window.addEventListener('userProfileUpdated', handler);
-    return () => window.removeEventListener('userProfileUpdated', handler);
+    window.addEventListener("userProfileUpdated", handler);
+    return () => window.removeEventListener("userProfileUpdated", handler);
   }, []);
 
   const handleLogout = useCallback(() => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     localStorage.clear();
-    router.push('/sign-in');
+    // localStorage.removeItem("userName");
+    // localStorage.removeItem("userEmail");
+    // localStorage.removeItem("userProfilePic");
+    router.push("/sign-in");
   }, [router]);
 
   return (
-    <Sidebar
-      variant="inset"
-      {...props}
-    >
+    <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem className='p-2 '>
+          <SidebarMenuItem className="p-2 ">
             <Link href="/dashboard">
               <Image
                 src={logo}
@@ -122,10 +138,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
         <NavDocumentation documents={data.documentation} />
         {/* <DropdownMenuSeparator /> */}
-        <NavSecondary
-          items={data.navSecondary}
-          className="mt-auto"
-        />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <div className="flex flex-col gap-2 w-full">
