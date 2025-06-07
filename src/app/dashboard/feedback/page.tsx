@@ -7,7 +7,5 @@ export default function FeedbackForm() {
     </div>
   )
 }
-=======
-  );
-}
+
 
