@@ -4,7 +4,8 @@ import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { User } from "lucide-react"; 
+import { User } from "lucide-react"
+import { toast } from "sonner"
 
 export default function EditProfilePage() {
   const [name, setName] = useState("")
@@ -16,24 +17,22 @@ export default function EditProfilePage() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   function normalizeImageUrl(url: string | null) {
-    if (!url) return null; // Jangan return default avatar di sini
-    if (url.startsWith("data:image")) return url;
-    if (url.startsWith("http")) return url;
-    if (url.startsWith("/")) return url;
-    return "/" + url;
+    if (!url) return null
+    if (url.startsWith("data:image")) return url
+    if (url.startsWith("http")) return url
+    if (url.startsWith("/")) return url
+    return "/" + url
   }
-  
-    useEffect(() => {
-      const storedName = localStorage.getItem("userName") || "";
-      const storedEmail = localStorage.getItem("userEmail") || "";
-      const storedPic = localStorage.getItem("userProfilePic") || "";
-  
-      setName(storedName);
-      setEmail(storedEmail);
 
-      // Hanya set preview jika ada foto
-      setPreview(storedPic ? normalizeImageUrl(storedPic) : null);
-    }, []);
+  useEffect(() => {
+    const storedName = localStorage.getItem("userName") || ""
+    const storedEmail = localStorage.getItem("userEmail") || ""
+    const storedPic = localStorage.getItem("userProfilePic") || ""
+
+    setName(storedName)
+    setEmail(storedEmail)
+    setPreview(storedPic ? normalizeImageUrl(storedPic) : null)
+  }, [])
 
   // Preview foto sebelum upload
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,97 +49,94 @@ export default function EditProfilePage() {
 
   // Update profile
   const handleUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
+    const formData = new FormData()
+    formData.append("name", name)
+    formData.append("email", email)
     if (profilePic) {
-      formData.append("profilePic", profilePic); 
+      formData.append("profilePic", profilePic)
     }
 
-    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null
 
     try {
       const res = await fetch("http://13.54.145.211:3000/api/user/profile", {
         method: "PUT",
         headers: token ? { Authorization: `Bearer ${token}` } : undefined,
         body: formData,
-      });
+      })
 
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.message || "Gagal update profil");
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.message || "Gagal update profil")
 
-        if (data.user) {
-        // Ambil data lama
-        const oldId = localStorage.getItem("userId");
-        const oldName = localStorage.getItem("userName");
-        const oldEmail = localStorage.getItem("userEmail");
-        const oldPic = localStorage.getItem("userProfilePic");
+      if (data.user) {
+        const oldId = localStorage.getItem("userId")
+        const oldName = localStorage.getItem("userName")
+        const oldEmail = localStorage.getItem("userEmail")
+        const oldPic = localStorage.getItem("userProfilePic")
 
-        // Simpan hanya jika berbeda
-        if (data.user._id !== oldId) localStorage.setItem("userId", data.user._id);
-        if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "");
-        if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "");
+        if (data.user._id !== oldId) localStorage.setItem("userId", data.user._id)
+        if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "")
+        if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "")
         if (data.user.profilePic !== oldPic)
-          localStorage.setItem('userProfilePic', `http://13.54.145.211:3000/${data.user.profilePic}`);
+          localStorage.setItem('userProfilePic', `http://13.54.145.211:3000/${data.user.profilePic}`)
 
-
-        window.dispatchEvent(new Event("userProfileUpdated")); // Emit event untuk update sidebar
+        window.dispatchEvent(new Event("userProfileUpdated"))
       }
 
-      console.log("Response data:", data);
-      alert("Profil berhasil diperbarui!");
+      toast.success("Profil berhasil diperbarui!")
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Gagal memperbarui profil.");
-      console.error(error);
+      toast.error(error instanceof Error ? error.message : "Gagal memperbarui profil.")
+      console.error(error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-
-  // Delete profile picture
-  const handleDeletePhoto = async () => {
-    if (!window.confirm("Hapus foto profil?")) return;
-    setDeleting(true);
-
-    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-
-    try {
-      const res = await fetch("http://13.54.145.211:3000/api/user/profile-pic", {
-        method: "DELETE",
-        headers: {
-          "Authorization": `Bearer ${token}`,
+  // Delete profile picture dengan toast konfirmasi
+  const handleDeletePhoto = () => {
+    toast(
+      "Hapus foto profil?",
+      {
+        description: "Tindakan ini tidak dapat dibatalkan.",
+        action: {
+          label: "Hapus",
+          onClick: async () => {
+            setDeleting(true)
+            const token = typeof window !== "undefined" ? localStorage.getItem("token") : null
+            try {
+              const res = await fetch("http://13.54.145.211:3000/api/user/profile-pic", {
+                method: "DELETE",
+                headers: {
+                  "Authorization": `Bearer ${token}`,
+                },
+              })
+              const data = await res.json().catch(() => ({}))
+              if (!res.ok) {
+                throw new Error(data.message || "Gagal hapus foto")
+              }
+              setprofilePic(null)
+              setPreview(null)
+              if (fileInputRef.current) fileInputRef.current.value = ""
+              localStorage.removeItem("userProfilePic")
+              window.dispatchEvent(new Event("userProfileUpdated"))
+              toast.success("Foto profil berhasil dihapus!")
+            } catch (error) {
+              toast.error(error instanceof Error ? error.message : "Gagal menghapus foto profil.")
+            } finally {
+              setDeleting(false)
+            }
+          }
         },
-      });
-
-      const data = await res.json().catch(() => ({}));
-      
-      if (!res.ok) {
-        console.error("Response error:", data);
-        throw new Error(data.message || "Gagal hapus foto");
+        cancel: {
+          label: "Batal",
+          onClick: () => {}
+        }
       }
-
-      setprofilePic(null);
-      setPreview(null);
-      if (fileInputRef.current) fileInputRef.current.value = "";
-
-      // Tambahkan ini:
-      localStorage.removeItem("userProfilePic");
-      window.dispatchEvent(new Event("userProfileUpdated"));
-
-      alert("Foto profil berhasil dihapus!");
-    } catch (error) {
-      alert(error instanceof Error ? error.message : "Gagal menghapus foto profil.");
-      console.error(error);
-    } finally {
-      setDeleting(false);
-    }
-  };
-
-
+    )
+  }
 
   return (
     <div className="mt-16 flex items-center justify-center bg-background">
