@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
+import { toast } from 'sonner';
 
 export async function POST(request: Request) {
   try {
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({result});
   } catch (error) {
-    console.log('terjadi error saat mengirim data ke server' + error);
+    toast.error('Terjadi masalah di server' + error);
     return  NextResponse.json({ error: 'Gagal mengirim data ke server' }, { status: 500 });
   }
 }

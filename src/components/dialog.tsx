@@ -22,7 +22,6 @@ export default function AlertDialogResponse(props: PropsResponse) {
         status: parsedResponse.result,
         kategori: 'startup',
       };
-      console.log(typeof historyData.userId);
 
       try {
         const res = await fetch('http://13.54.145.211:3000/api/prediction/simpan', {
@@ -34,7 +33,8 @@ export default function AlertDialogResponse(props: PropsResponse) {
           body: JSON.stringify(historyData),
         });
         const data = await res.text();
-        console.log(`Response: ${data}`);
+        // console.log(`Response: ${data}`);
+        return data;
       } catch (err) {
         toast.error('Something went wrong');
         console.log(err);

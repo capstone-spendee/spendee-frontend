@@ -57,7 +57,7 @@ export default function PersonalityForm() {
       setResponseMessage(result);
       setOpen(true);
     } catch (error) {
-      console.log(error);
+      toast.error('Data yang anda kirim tidak valid' + error);
     }
     setLoading(false);
   };

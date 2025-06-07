@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { toast } from 'sonner';
 
 export async function POST(request: Request) {
   try {
@@ -11,10 +12,10 @@ export async function POST(request: Request) {
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     return NextResponse.json(result);
   } catch (error) {
-    console.log('terjadi error saat mengirim data ke server' + error);
+    toast.error('Terjadi masalah di server' + error);
     return NextResponse.json({ error: 'Internal Server Error', detail: String(error) }, { status: 500 });
   }
 }

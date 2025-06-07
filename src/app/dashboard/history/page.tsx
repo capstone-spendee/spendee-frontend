@@ -9,6 +9,7 @@ import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMe
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import HistorySkeleton from './skeleton';
+import { toast } from 'sonner';
 
 // Updated type definition based on your backend data
 export type HistoryData = {
@@ -32,12 +33,10 @@ const fetchData = async (): Promise<HistoryData[]> => {
       },
     });
     const result = await dataFromDB.json();
-    console.log('data dari backend ', result);
-    
     // Assuming the API returns an array or has a data property
     return Array.isArray(result) ? result : result.data || [];
   } catch (err) {
-    console.log('Error fetching data:', err);
+    toast.error('Gagal mengambil data prediksi' + err);
     return [];
   }
 };

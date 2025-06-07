@@ -23,7 +23,7 @@ export default function AlertDialogPersonality(props: PropsResponse) {
     const saveHistory = async () => {
             
             const extractedStatus = extractStatus(parsedResponse);
-            console.log(extractedStatus); 
+            // console.log(extractedStatus); 
 
             const historyData = {
                 userId:{$oid:localStorage.getItem('userId')},
@@ -42,9 +42,9 @@ export default function AlertDialogPersonality(props: PropsResponse) {
                     body: JSON.stringify(historyData),
                 });
 
-                console.log(historyData);
                 const data = await res.text();
-                console.log(`Response: ${data}`);
+                // console.log(`Response: ${data}`);
+                return data;
             } catch (err) {
                 toast.error('Something went wrong');
                 console.log(err);

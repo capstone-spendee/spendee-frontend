@@ -57,11 +57,11 @@ export default function StartupForm() {
     toast.info('model sedang memproses data anda...');
     try {
       const response = await submitStartupData(form.getValues());
-      console.log(response);
+      // console.log(response);
       setResponseMessage(response);
       setAlertOpen(true);
     } catch (error) {
-      console.log(error);
+      toast.error('Data yang anda kirim tidak valid' + error);
     }
     setLoading(false);
   };
