@@ -14,10 +14,6 @@ export default function ConsultationAi() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (message) { // !message
-      toast.info('feature sedang dalam pengembangan 😡');
-      return;
-    }
     
     if(!message){
       toast.error('Please input a message');
@@ -84,11 +80,10 @@ export default function ConsultationAi() {
           className="w-full gap-2 flex px-4 "
         >
           <Input
-            placeholder="Tanya SpendeeBot... (feature sedang dalam pengembangan)"
+            placeholder="Tanya SpendeeBot... "
             className="flex-1 p-4 rounded-3xl border"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            disabled
           />
           <Button
             type="submit"
