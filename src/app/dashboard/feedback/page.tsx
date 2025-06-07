@@ -1,4 +1,4 @@
-import FeedbackPage from "@/components/form-feedback";
+import FeedbackPage from '@/components/form-feedback';
 
 export default function FeedbackForm() {
   return (
@@ -7,3 +7,7 @@ export default function FeedbackForm() {
     </div>
   )
 }
+=======
+  );
+}
+

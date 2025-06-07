@@ -122,8 +122,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem className="p-2 ">
-            <Link href="/dashboard">
+          <SidebarMenuItem className='p-2 '>
+            <Link href="/">
               <Image
                 src={logo}
                 alt="logo"

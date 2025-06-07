@@ -14,11 +14,7 @@ export default function ConsultationAi() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (message) { // !message
-      // toast.error('Please input a message');
-      toast.info('feature sedang dalam pengembangan 😡');
-      return;
-    }
+    
     if(!message){
       toast.error('Please input a message');
       return;
@@ -30,7 +26,7 @@ export default function ConsultationAi() {
 
     try {
       setLoading(true);
-      const response = await fetch('https://spendeebot-325126223708.us-central1.run.app/api/generate', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_MODEL_CHATBOT}/api/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_input: userMessage }),
@@ -64,7 +60,7 @@ export default function ConsultationAi() {
                     chat.sender === 'You' ? 'ml-auto bg-muted-foreground text-secondary rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl border-l-2 text-right' : 'mr-auto bg-sidebar rounded-tl-2xl rounded-tr-2xl rounded-br-2xl border-l-2 text-left'
                   }`}
                 >
-                  <p className="text-sm font-light mt-1 whitespace-pre-wrap">{chat.message}</p>
+                  <p className="text-sm font-normal mt-1 whitespace-pre-wrap">{chat.message}</p>
                 </div>
               ))}
 
@@ -84,11 +80,10 @@ export default function ConsultationAi() {
           className="w-full gap-2 flex px-4 "
         >
           <Input
-            placeholder="Tanya SpendeeBot... (feature sedang dalam pengembangan)"
+            placeholder="Tanya SpendeeBot... "
             className="flex-1 p-4 rounded-3xl border"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            disabled
           />
           <Button
             type="submit"

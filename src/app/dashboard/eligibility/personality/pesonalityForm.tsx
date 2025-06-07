@@ -15,6 +15,7 @@ import { formatPersen } from '../formatPersent';
 import AlertDialogPersonality from './dialog';
 import { toast } from 'sonner';
 import { Progress } from '@/components/ui/progress';
+import TooltipDemo from '@/components/tooltip';
 
 export default function PersonalityForm() {
   const [loading, setLoading] = useState(false);
@@ -56,7 +57,7 @@ export default function PersonalityForm() {
       setResponseMessage(result);
       setOpen(true);
     } catch (error) {
-      console.log(error);
+      toast.error('Data yang anda kirim tidak valid' + error);
     }
     setLoading(false);
   };
@@ -71,7 +72,7 @@ export default function PersonalityForm() {
           </div>
           <div className="sm:w-[90px] md:w-[200px]">
             <Progress value={progressPercent} />
-            <p className={`text-xs text-right mt-1  ${progressPercent < 100 ? 'text-muted-foreground' : 'text-green-600'}`}>{progressPercent}%</p>
+            <p className={`text-xs text-right mt-1  ${progressPercent < 100 ? 'text-muted-foreground' : 'text-chart-2'}`}>{progressPercent}%</p>
           </div>
         </CardHeader>
         <CardContent>
@@ -83,7 +84,9 @@ export default function PersonalityForm() {
                   name="Total_Utang_Terhadap_Pendapatan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Total Utang Terhadap Pendapatan</FormLabel>
+                      <FormLabel className='flex justify-between'>Total Utang Terhadap Pendapatan
+                        <TooltipDemo content="Persentase total cicilan utang bulanan Anda dibandingkan dengan pendapatan bulanan kotor Anda." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -105,7 +108,9 @@ export default function PersonalityForm() {
                   name="Pendapatan_Bulanan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Pendapatan Bulanan</FormLabel>
+                      <FormLabel className='flex justify-between'>Pendapatan Bulanan
+                        <TooltipDemo content="Total pendapatan kotor Anda per bulan (sebelum dipotong pajak/iuran)." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -127,7 +132,9 @@ export default function PersonalityForm() {
                   name="Pendapatan_Tahunan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Pendapatan Tahunan</FormLabel>
+                      <FormLabel className='flex justify-between'>Pendapatan Tahunan
+                        <TooltipDemo content="Total pendapatan kotor Anda per tahun." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -149,7 +156,9 @@ export default function PersonalityForm() {
                   name="Suku_Bunga_Yang_Diterapkan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Suku Bunga Yang Diterapkan</FormLabel>
+                      <FormLabel className='flex justify-between'>Suku Bunga Yang Diterapkan
+                        <TooltipDemo content="Tingkat suku bunga yang akan dikenakan pada pinjaman Anda jika disetujui." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -171,7 +180,9 @@ export default function PersonalityForm() {
                   name="Jumlah_Pinjaman"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Jumlah Pinjaman</FormLabel>
+                      <FormLabel className='flex justify-between'>Jumlah Pinjaman
+                        <TooltipDemo content="Nominal uang yang Anda ingin pinjam." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -193,7 +204,9 @@ export default function PersonalityForm() {
                   name="Suku_Bunga_Awal"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Suku Bunga Awal</FormLabel>
+                      <FormLabel className='flex justify-between'>Suku Bunga Awal
+                        <TooltipDemo content="Tingkat suku bunga yang berlaku pada saat pengajuan pinjaman." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -215,7 +228,9 @@ export default function PersonalityForm() {
                   name="Tingkat_Pendidikan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Tingkat Pendidikan</FormLabel>
+                      <FormLabel className='flex justify-between'>Tingkat Pendidikan
+                        <TooltipDemo content="Jenjang pendidikan terakhir yang telah Anda selesaikan." />
+                      </FormLabel>
                       <FormControl>
                         <Select
                           value={field.value}
@@ -249,7 +264,9 @@ export default function PersonalityForm() {
                   name="Kekayaan_Bersih"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Kekayaan Bersih</FormLabel>
+                      <FormLabel className='flex justify-between'>Kekayaan Bersih
+                        <TooltipDemo content="Total nilai aset Anda dikurangi total nilai kewajiban (utang) Anda." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -271,7 +288,9 @@ export default function PersonalityForm() {
                   name="Pembayaran_Pinjaman_Bulanan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Pembayaran Pinjaman Bulanan</FormLabel>
+                      <FormLabel className='flex justify-between'>Pembayaran Pinjaman Bulanan
+                        <TooltipDemo content="Estimasi jumlah cicilan pinjaman yang harus Anda bayar setiap bulan." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -293,7 +312,9 @@ export default function PersonalityForm() {
                   name="Total_Aset"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Total Aset</FormLabel>
+                      <FormLabel className='flex justify-between'>Total Aset
+                        <TooltipDemo content="Keseluruhan nilai harta benda yang Anda miliki (misalnya, properti, kendaraan, tabungan, investasi)." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -315,7 +336,9 @@ export default function PersonalityForm() {
                   name="Usia_Pemohon"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Usia Pemohon</FormLabel>
+                      <FormLabel className='flex justify-between'>Usia Pemohon
+                        <TooltipDemo content="Usia Anda saat ini dalam satuan tahun." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -333,7 +356,9 @@ export default function PersonalityForm() {
                   name="Skor_Kelayakan_Kredit"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Skor Kelayakan Kredit</FormLabel>
+                      <FormLabel className='flex justify-between'>Skor Kelayakan Kredit
+                        <TooltipDemo content="Indikator numerik yang mencerminkan riwayat dan kemampuan Anda dalam membayar utang." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -351,7 +376,9 @@ export default function PersonalityForm() {
                   name="Pengalaman_Kerja"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Pengalaman Kerja</FormLabel>
+                      <FormLabel className='flex justify-between'>Pengalaman Kerja
+                        <TooltipDemo content="Durasi total Anda telah bekerja dalam satuan tahun." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -369,7 +396,9 @@ export default function PersonalityForm() {
                   name="Durasi_Sejarah_Kredit"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Durasi Sejarah Kredit</FormLabel>
+                      <FormLabel className='flex justify-between'>Durasi Sejarah Kredit
+                        <TooltipDemo content="Lama waktu riwayat kredit Anda tercatat (misalnya, dari kartu kredit pertama, pinjaman pertama)." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -386,7 +415,9 @@ export default function PersonalityForm() {
                   name="Periode_Pembayaran_Pinjaman"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Periode Pembayaran Pinjaman</FormLabel>
+                      <FormLabel className='flex justify-between'>Periode Pembayaran Pinjaman
+                        <TooltipDemo content="Jangka waktu (tenor) pinjaman Anda dalam satuan bulan atau tahun." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -404,7 +435,9 @@ export default function PersonalityForm() {
                   name="Pembayaran_Utang_Bulanan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Pembayaran Utang Bulanan</FormLabel>
+                      <FormLabel className='flex justify-between'>Pembayaran Utang Bulanan
+                        <TooltipDemo content="Total jumlah cicilan utang lain yang harus Anda bayar setiap bulan " />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -426,7 +459,9 @@ export default function PersonalityForm() {
                   name="Saldo_Tabungan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Saldo Tabungan</FormLabel>
+                      <FormLabel className='flex justify-between'>Saldo Tabungan
+                        <TooltipDemo content="Total dana yang Anda miliki di rekening tabungan." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -448,7 +483,9 @@ export default function PersonalityForm() {
                   name="Jumlah_Pengecekan_Kredit"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Jumlah Pengecekan Kredit</FormLabel>
+                      <FormLabel className='flex justify-between'>Jumlah Pengecekan Kredit
+                        <TooltipDemo content=" Berapa kali riwayat kredit Anda telah diperiksa oleh lembaga keuangan dalam periode tertentu." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -466,7 +503,9 @@ export default function PersonalityForm() {
                   name="Jumlah_Tanggungan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Jumlah Tanggungan</FormLabel>
+                      <FormLabel className='flex justify-between'>Jumlah Tanggungan
+                        <TooltipDemo content="Jumlah anggota keluarga atau individu lain yang secara finansial bergantung pada Anda." />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -484,7 +523,9 @@ export default function PersonalityForm() {
                   name="Jumlah_Jalur_Kredit_Aktif"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Jumlah Jalur Kredit Aktif</FormLabel>
+                      <FormLabel className='flex justify-between'>Jumlah Jalur Kredit Aktif
+                        <TooltipDemo content="Jumlah fasilitas kredit yang sedang Anda gunakan saat ini " />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}

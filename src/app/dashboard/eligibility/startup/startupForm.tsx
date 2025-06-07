@@ -50,18 +50,18 @@ export default function StartupForm() {
     if (typeof val === 'string') return val.trim() !== '';
     return val !== null && val !== undefined && val !== 0;
   }).length;
- const progressPercent = Math.round((filledFields / totalFields) * 100);
+  const progressPercent = Math.round((filledFields / totalFields) * 100);
 
   const onSubmit = async () => {
     setLoading(true);
     toast.info('model sedang memproses data anda...');
     try {
       const response = await submitStartupData(form.getValues());
-      console.log(response);
+      // console.log(response);
       setResponseMessage(response);
       setAlertOpen(true);
     } catch (error) {
-      console.log(error);
+      toast.error('Data yang anda kirim tidak valid' + error);
     }
     setLoading(false);
   };
@@ -69,14 +69,14 @@ export default function StartupForm() {
   return (
     <>
       <Card className="border-none shadow-none">
-        <CardHeader className='flex justify-between'>
+        <CardHeader className="flex justify-between">
           <div>
             <CardTitle>Startup</CardTitle>
             <CardDescription className="text-muted-foreground ">Check your eligibility for you startup.</CardDescription>
           </div>
           <div className="sm:w-[90px] md:w-[200px]">
-            <Progress value={progressPercent}  />
-            <p className={`text-xs text-right mt-1  ${progressPercent < 100 ? 'text-muted-foreground' : 'text-green-600'}`}>{progressPercent}%</p>
+            <Progress value={progressPercent} />
+            <p className={`text-xs text-right mt-1  ${progressPercent < 100 ? 'text-muted-foreground' : 'text-chart-2'}`}>{progressPercent}%</p>
           </div>
         </CardHeader>
         <CardContent>
@@ -89,7 +89,7 @@ export default function StartupForm() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="flex justify-between">
-                        kategori <TooltipDemo content="pilih kategori startup" />
+                        kategori <TooltipDemo content="Pilih kategori utama yang paling sesuai dengan jenis bisnis startup Anda " />
                       </FormLabel>
                       <FormControl>
                         <Select
@@ -119,7 +119,10 @@ export default function StartupForm() {
                   name="total_dana"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>total dana</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        total dana
+                        <TooltipDemo content="Masukkan total akumulasi dana yang telah diterima oleh startup Anda" />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -140,7 +143,10 @@ export default function StartupForm() {
                   name="jumlah_capaian"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>jumlah capaian</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        jumlah capaian
+                        <TooltipDemo content=" Masukkan total jumlah milestone atau pencapaian signifikan yang telah berhasil diraih oleh startup Anda" />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -162,7 +168,10 @@ export default function StartupForm() {
                   name="jumlah_pendanaan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>jumlah pendanaan</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        jumlah pendanaan
+                        <TooltipDemo content="Masukkan total jumlah putaran pendanaan (funding rounds) yang telah berhasil didapatkan oleh startup Andaa" />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -184,7 +193,10 @@ export default function StartupForm() {
                   name="tanggal_pencapaian_awal"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>tanggal pencapaian awal</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        tanggal pencapaian awal
+                        <TooltipDemo content="Pilih tanggal saat startup Anda pertama kali mencapai milestone atau pencapaian signifikan yang terukur." />
+                      </FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
@@ -222,7 +234,10 @@ export default function StartupForm() {
                   name="tanggal_pencapaian_terakhir"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>tanggal pencapaian terakhir</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        tanggal pencapaian terakhir
+                        <TooltipDemo content="Pilih tanggal saat startup Anda terakhir kali mencapai milestone atau pencapaian signifikan yang terukur." />
+                      </FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
@@ -261,7 +276,10 @@ export default function StartupForm() {
                   name="tanggal_pendanaan_pertama"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>tanggal pendanaan pertama</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        tanggal pendanaan pertama
+                        <TooltipDemo content=" Pilih tanggal saat startup Anda pertama kali menerima pendanaan eksternal atau investasi." />
+                      </FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
@@ -299,7 +317,10 @@ export default function StartupForm() {
                   name="tanggal_pendanaan_terakhir"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>tanggal pendanaan terakhir</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        tanggal pendanaan terakhir
+                        <TooltipDemo content="Pilih tanggal saat startup Anda terakhir kali menerima pendanaan eksternal atau investasi." />
+                      </FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
@@ -337,7 +358,10 @@ export default function StartupForm() {
                   name="populer"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>populer</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        populer
+                        <TooltipDemo content="Pilih 'Ya' jika startup Anda saat ini dianggap populer atau yang signifikan di industri atau pasar Anda. Pilih 'Tidak' jika belum" />
+                      </FormLabel>
                       <FormControl>
                         <Select
                           value={field.value.toString()}
@@ -369,7 +393,7 @@ export default function StartupForm() {
                     <FormItem>
                       <FormLabel className="flex justify-between">
                         relasi*
-                        <TooltipDemo content="jumlah relasi startup" />
+                        <TooltipDemo content="Masukkan jumlah relasi atau koneksi penting yang dimiliki startup Anda " />
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -388,7 +412,10 @@ export default function StartupForm() {
                   name="rata_partisipan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>rata partisipan*</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        rata partisipan*
+                        <TooltipDemo content=" Masukkan rata-rata jumlah partisipan atau anggota aktif yang terlibat dalam ekosistem startup Anda" />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -406,7 +433,10 @@ export default function StartupForm() {
                   name="rasio_dana_per_relasi"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>rasio dana per relasi</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        rasio dana per relasi
+                        <TooltipDemo content=" Ini adalah rasio yang menunjukkan efisiensi penggunaan dana startup Anda" />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -427,7 +457,10 @@ export default function StartupForm() {
                   name="dana_per_pendanaan"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>dana per pendanaan</FormLabel>
+                      <FormLabel className="flex justify-between">
+                        dana per pendanaan
+                        <TooltipDemo content="Masukkan rata-rata jumlah dana yang diterima startup Anda" />
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}

@@ -1,11 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-html,
+/* html,
 body,
 :root {
   height: 100%;
-}
+} */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -78,9 +78,9 @@ body,
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.9702 0 0);
+  --background: oklch(0.9952 0.0054 117.92);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(0.9702 0 0);
+  --card: oklch(0.9952 0.0054 117.92);
   /* --card: oklch(1 0 0); */
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
