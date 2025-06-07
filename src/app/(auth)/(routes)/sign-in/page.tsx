@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { jwtDecode } from "jwt-decode";
+// import { jwtDecode } from "jwt-decode";
 import { Mail, Lock } from "lucide-react";
 
 export default function SignInPage() {
@@ -12,43 +12,48 @@ export default function SignInPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
 
-    try {
-      const res = await fetch("http://13.54.145.211:3000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+  try {
+    const res = await fetch("http://13.54.145.211:3000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (!res.ok) throw new Error(data.message || "Login gagal");
+    if (!res.ok) throw new Error(data.message || "Login gagal");
 
-      localStorage.setItem("token", data.token);
+    // Simpan token dan data user
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userId", data.user.id);
+    localStorage.setItem("userEmail", data.user.email);
+    localStorage.setItem("userName", data.user.name);
+    localStorage.setItem(
+      "userProfilePic",
+      data.user.profilePic
+        ? data.user.profilePic.startsWith("http")
+          ? data.user.profilePic
+          : `http://13.54.145.211:3000/${data.user.profilePic.replace(/^\/+/, "")}`
+        : ""
+    );
 
-      const decoded = jwtDecode<{ id: string; email: string }>(data.token);
-
-      // validasi
-      if (!localStorage.getItem("userId")) {
-        localStorage.setItem("userId", decoded.id);
-        localStorage.setItem("userEmail", decoded.email);
-      }
-
-      window.location.href = "/dashboard";
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Terjadi kesalahan saat login");
-      }
-    } finally {
-      setLoading(false);
+    window.location.href = "/dashboard";
+  } catch (err) {
+    if (err instanceof Error) {
+      setError(err.message);
+    } else {
+      setError("Terjadi kesalahan saat login");
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
