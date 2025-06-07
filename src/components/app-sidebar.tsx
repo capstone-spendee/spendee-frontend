@@ -31,9 +31,9 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 const DEFAULT_USER = {
-  name: "User1",
+  name: "user",
   email: "user@email.com",
-  avatar: "/avatars/shadcn.jpg",
+  avatar: "",
 };
 
 const data = {

@@ -143,7 +143,7 @@ export default function EditProfilePage() {
       <form
         onSubmit={handleUpdate}
         encType="multipart/form-data"
-        className="bg-card shadow-md rounded-lg p-8 w-full max-w-md space-y-6 border border-border"
+        className="bg-card md:shadow-md shadow-sm rounded-lg p-8 w-full max-w-md space-y-6 border border-border"
       >
         <div className="flex justify-center mb-6">
           <div className="relative">

@@ -59,7 +59,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <form
         onSubmit={handleSubmit}
-        className="bg-card shadow-xl rounded-2xl p-10 w-full max-w-md space-y-7 border border-border"
+        className="bg-card md:shadow-md shadow-sm rounded-2xl p-10 w-full max-w-md space-y-7 border border-border"
       >
         <div className="mb-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-1 tracking-tight">

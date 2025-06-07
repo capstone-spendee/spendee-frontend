@@ -9,7 +9,6 @@ import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMe
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import HistorySkeleton from './skeleton';
-import { toast } from 'sonner';
 
 // Updated type definition based on your backend data
 export type HistoryData = {
@@ -25,7 +24,7 @@ export type HistoryData = {
 // Fetch data function
 const fetchData = async (): Promise<HistoryData[]> => {
   try {
-    const dataFromDB = await fetch(`http://13.54.145.211:3000/api/prediction/history`, {
+    const dataFromDB = await fetch(`${process.env.NEXT_PUBLIC_HISTORY_ELIGIBILITY}/api/prediction/history`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +35,6 @@ const fetchData = async (): Promise<HistoryData[]> => {
     // Assuming the API returns an array or has a data property
     return Array.isArray(result) ? result : result.data || [];
   } catch (err) {
-    toast.error('Tida ada data history');
     console.log(err);
     return [];
   }

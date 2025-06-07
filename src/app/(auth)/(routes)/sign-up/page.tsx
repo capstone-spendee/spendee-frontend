@@ -47,7 +47,7 @@ export default function SignUpPage() {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <form
         onSubmit={handleSubmit}
-        className="bg-card shadow-xl rounded-2xl p-10 w-full max-w-md space-y-7 border border-border"
+        className="bg-card md:shadow-md shadow-sm rounded-2xl p-10 w-full max-w-md space-y-7 border border-border"
       >
         <div>
           <h2 className="text-3xl font-bold text-center mb-1 text-foreground tracking-tight">

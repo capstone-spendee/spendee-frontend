@@ -4,6 +4,7 @@ import Image from 'next/image';
 import logo from '../../../public/image/logo.png';
 import { ModeToggle } from './theme-toggle';
 import InstallButton from './installButton';
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -15,20 +16,15 @@ export default function Navbar() {
         // height={4}
       />
       <div className="flex items-center gap-2">
-        <a href="/sign-in">
+        <Link href="/sign-in">
           <Button
             variant={'outline'}
             className="rounded-[20px] border-2"
           >
             Sign In
           </Button>
-        </a>
-        <Button
-          variant={'outline'}
-          className="rounded-[20px] border-2"
-        >
-          Sign In
-        </Button>
+        </Link>
+
         <InstallButton />
 
         <ModeToggle />
