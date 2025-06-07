@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { User } from "lucide-react"; 
 
 export default function EditProfilePage() {
   const [name, setName] = useState("")
@@ -13,6 +14,26 @@ export default function EditProfilePage() {
   const [loading, setLoading] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  function normalizeImageUrl(url: string | null) {
+    if (!url) return null; // Jangan return default avatar di sini
+    if (url.startsWith("data:image")) return url;
+    if (url.startsWith("http")) return url;
+    if (url.startsWith("/")) return url;
+    return "/" + url;
+  }
+  
+    useEffect(() => {
+      const storedName = localStorage.getItem("userName") || "";
+      const storedEmail = localStorage.getItem("userEmail") || "";
+      const storedPic = localStorage.getItem("userProfilePic") || "";
+  
+      setName(storedName);
+      setEmail(storedEmail);
+
+      // Hanya set preview jika ada foto
+      setPreview(storedPic ? normalizeImageUrl(storedPic) : null);
+    }, []);
 
   // Preview foto sebelum upload
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,101 +49,124 @@ export default function EditProfilePage() {
   }
 
   // Update profile
-// Update profile
-const handleUpdate = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
 
-  const formData = new FormData();
-  formData.append("name", name);
-  formData.append("email", email);
-  if (profilePic) {
-    formData.append("profilePic", profilePic); 
-  }
-
-  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-
-  try {
-    const res = await fetch("http://13.54.145.211:3000/api/user/profile", {
-      method: "PUT",
-      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-      body: formData,
-    });
-
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.message || "Gagal update profil");
-
-      if (data.user) {
-      // Ambil data lama
-      const oldId = localStorage.getItem("userId");
-      const oldName = localStorage.getItem("userName");
-      const oldEmail = localStorage.getItem("userEmail");
-      const oldPic = localStorage.getItem("userProfilePic");
-
-      // Simpan hanya jika berbeda
-      if (data.user._id !== oldId) localStorage.setItem("userId", data.user._id);
-      if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "");
-      if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "");
-      if (data.user.profilePic !== oldPic)
-        localStorage.setItem("userProfilePic", data.user.profilePic || "");
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    if (profilePic) {
+      formData.append("profilePic", profilePic); 
     }
 
-    console.log("Response data:", data);
-    alert("Profil berhasil diperbarui!");
-  } catch (error) {
-    alert(error instanceof Error ? error.message : "Gagal memperbarui profil.");
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
-};
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
+    try {
+      const res = await fetch("http://13.54.145.211:3000/api/user/profile", {
+        method: "PUT",
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+        body: formData,
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.message || "Gagal update profil");
+
+        if (data.user) {
+        // Ambil data lama
+        const oldId = localStorage.getItem("userId");
+        const oldName = localStorage.getItem("userName");
+        const oldEmail = localStorage.getItem("userEmail");
+        const oldPic = localStorage.getItem("userProfilePic");
+
+        // Simpan hanya jika berbeda
+        if (data.user._id !== oldId) localStorage.setItem("userId", data.user._id);
+        if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "");
+        if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "");
+        if (data.user.profilePic !== oldPic)
+          localStorage.setItem('userProfilePic', `http://13.54.145.211:3000/${data.user.profilePic}`);
+
+
+        window.dispatchEvent(new Event("userProfileUpdated")); // Emit event untuk update sidebar
+      }
+
+      console.log("Response data:", data);
+      alert("Profil berhasil diperbarui!");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Gagal memperbarui profil.");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   // Delete profile picture
- const handleDeletePhoto = async () => {
-  if (!window.confirm("Hapus foto profil?")) return;
-  setDeleting(true);
+  const handleDeletePhoto = async () => {
+    if (!window.confirm("Hapus foto profil?")) return;
+    setDeleting(true);
 
-  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  try {
-    const res = await fetch("http://13.54.145.211:3000/api/user/profile-pic", {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-    });
+    try {
+      const res = await fetch("http://13.54.145.211:3000/api/user/profile-pic", {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
 
-    const data = await res.json().catch(() => ({}));
-    
-    if (!res.ok) {
-      console.error("Response error:", data);
-      throw new Error(data.message || "Gagal hapus foto");
+      const data = await res.json().catch(() => ({}));
+      
+      if (!res.ok) {
+        console.error("Response error:", data);
+        throw new Error(data.message || "Gagal hapus foto");
+      }
+
+      setprofilePic(null);
+      setPreview(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+
+      // Tambahkan ini:
+      localStorage.removeItem("userProfilePic");
+      window.dispatchEvent(new Event("userProfileUpdated"));
+
+      alert("Foto profil berhasil dihapus!");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Gagal menghapus foto profil.");
+      console.error(error);
+    } finally {
+      setDeleting(false);
     }
-
-    setprofilePic(null);
-    setPreview(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
-
-    alert("Foto profil berhasil dihapus!");
-  } catch (error) {
-    alert(error instanceof Error ? error.message : "Gagal menghapus foto profil.");
-    console.error(error);
-  } finally {
-    setDeleting(false);
-  }
-};
-
+  };
 
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="mt-16 flex items-center justify-center bg-background">
       <form
         onSubmit={handleUpdate}
         encType="multipart/form-data"
         className="bg-card shadow-md rounded-lg p-8 w-full max-w-md space-y-6 border border-border"
       >
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            {preview ? (
+              <Image
+                src={preview}
+                alt="Preview"
+                width={128}
+                height={128}
+                className="w-32 h-32 rounded-full object-cover border border-primary ring-2 ring-primary/30"
+              />
+            ) : (
+              <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center border border-primary ring-2 ring-primary/30">
+                <User className="w-16 h-16 text-muted-foreground" />
+              </div>
+            )}
+          </div>
+        </div>
+
         <h2 className="text-2xl font-bold text-center mb-2 text-foreground">Edit Profil</h2>
         <div className="space-y-4">
           <div>
@@ -154,26 +198,15 @@ const handleUpdate = async (e: React.FormEvent) => {
                 accept="image/*"
                 onChange={handlePhotoChange}
               />
-              {preview && (
-                <>
-                  <Image
-                    src={preview}
-                    alt="Preview"
-                    width={56}
-                    height={56}
-                    className="w-14 h-14 rounded-full object-cover border"
-                  />
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="sm"
-                    onClick={handleDeletePhoto}
-                    disabled={deleting}
-                  >
-                    {deleting ? "Menghapus..." : "Hapus Foto"}
-                  </Button>
-                </>
-              )}
+              <Button
+                type="button"
+                variant="destructive"
+                size="sm"
+                onClick={handleDeletePhoto}
+                disabled={deleting}
+              >
+                {deleting ? "Menghapus..." : "Hapus Foto"}
+              </Button>
             </div>
           </div>
         </div>
