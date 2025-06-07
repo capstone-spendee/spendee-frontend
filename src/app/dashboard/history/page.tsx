@@ -36,8 +36,7 @@ const fetchData = async (): Promise<HistoryData[]> => {
     // Assuming the API returns an array or has a data property
     return Array.isArray(result) ? result : result.data || [];
   } catch (err) {
-    toast.error('Tida ada data history');
-    const error = err
+    toast.error('Tida ada data history' + err);
     return [];
   }
 };
