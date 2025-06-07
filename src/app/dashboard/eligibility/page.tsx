@@ -3,7 +3,7 @@ import { Rocket, User } from 'lucide-react';
 import PersonalityForm from './personality/pesonalityForm';
 import StartupForm from './startup/startupForm';
 
-export default function Page() {
+export default function Eligibility() {
   return (
     <Tabs
       defaultValue="startup"
