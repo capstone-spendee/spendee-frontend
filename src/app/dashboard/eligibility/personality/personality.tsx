@@ -17,8 +17,8 @@ const validated = personalitySchema.parse(data);
       body: JSON.stringify(payload),
     });
     const result = await response.text();
-    console.log(result);
-    console.log(payload);
+    // console.log(result);
+    // console.log(payload);
     return result;
   } catch (error) {
     console.log('terjadi kesalahan saat mengirim data inputan' + error);

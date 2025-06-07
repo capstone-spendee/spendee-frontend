@@ -17,10 +17,10 @@ export const submitStartupData = async (data: z.infer<typeof startupSchema>) => 
       body: JSON.stringify(payload),
     });
     const result = await response.text();
-    console.log('RAW response text:', result);
+    // console.log('RAW response text:', result);
 
-    console.log(payload);
-    console.log('Payload JSON:', JSON.stringify(payload, null, 2));
+    // console.log(payload);
+    // console.log('Payload JSON:', JSON.stringify(payload, null, 2));
     return result;
   } catch (error) {
     console.log('terjadi kesalahan saat mengirim data inputan' + error);

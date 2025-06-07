@@ -81,7 +81,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className='p-2 '>
-            <Link href="/dashboard">
+            <Link href="/">
               <Image
                 src={logo}
                 alt="logo"

@@ -7,7 +7,7 @@ import InstallButton from './installButton';
 
 export default function Navbar() {
   return (
-    <div className="flex justify-around py-2 border">
+    <div className="flex md:justify-around justify-between px-4 py-2 border">
       <Image
         src={logo}
         alt="Logo"
