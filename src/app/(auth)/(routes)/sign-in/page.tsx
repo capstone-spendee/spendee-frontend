@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { Mail, Lock } from "lucide-react";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -53,15 +54,17 @@ export default function SignInPage() {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <form
         onSubmit={handleSubmit}
-        className="bg-card shadow-md rounded-lg p-8 w-full max-w-md space-y-6 border border-border"
+        className="bg-card shadow-xl rounded-2xl p-10 w-full max-w-md space-y-7 border border-border"
       >
-        <h2 className="text-2xl font-bold text-center mb-2 text-foreground">
-          Masuk ke Spendee
-        </h2>
-        <p className="text-muted-foreground text-center mb-4 text-sm">
-          Silakan masukan detail akun anda untuk melanjutkan
-        </p>
-        <div className="space-y-4">
+        <div className="mb-4">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-1 tracking-tight">
+            Masuk ke Spendee
+          </h2>
+          <p className="text-muted-foreground text-center text-sm">
+            Silakan masukkan detail akun Anda untuk melanjutkan
+          </p>
+        </div>
+        <div className="space-y-5">
           <div>
             <label
               className="block mb-1 text-sm font-medium text-foreground"
@@ -69,15 +72,21 @@ export default function SignInPage() {
             >
               Email
             </label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="example@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoFocus
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <Mail size={18} />
+              </span>
+              <Input
+                id="email"
+                type="email"
+                placeholder="example@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoFocus
+                className="pl-10"
+              />
+            </div>
           </div>
           <div>
             <label
@@ -86,14 +95,20 @@ export default function SignInPage() {
             >
               Password
             </label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="******"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <Lock size={18} />
+              </span>
+              <Input
+                id="password"
+                type="password"
+                placeholder="******"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="pl-10"
+              />
+            </div>
           </div>
         </div>
         {error && (

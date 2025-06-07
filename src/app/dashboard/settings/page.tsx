@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { User } from "lucide-react"; 
 
 export default function EditProfilePage() {
   const [name, setName] = useState("")
@@ -142,12 +143,30 @@ export default function EditProfilePage() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="mt-16 flex items-center justify-center bg-background">
       <form
         onSubmit={handleUpdate}
         encType="multipart/form-data"
         className="bg-card shadow-md rounded-lg p-8 w-full max-w-md space-y-6 border border-border"
       >
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            {preview ? (
+              <Image
+                src={preview}
+                alt="Preview"
+                width={128}
+                height={128}
+                className="w-32 h-32 rounded-full object-cover border border-primary ring-2 ring-primary/30"
+              />
+            ) : (
+              <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center border border-primary ring-2 ring-primary/30">
+                <User className="w-16 h-16 text-muted-foreground" />
+              </div>
+            )}
+          </div>
+        </div>
+
         <h2 className="text-2xl font-bold text-center mb-2 text-foreground">Edit Profil</h2>
         <div className="space-y-4">
           <div>
@@ -179,15 +198,6 @@ export default function EditProfilePage() {
                 accept="image/*"
                 onChange={handlePhotoChange}
               />
-              {preview && (
-                <Image
-                  src={preview}
-                  alt="Preview"
-                  width={56}
-                  height={56}
-                  className="w-14 h-14 rounded-full object-cover border"
-                />
-              )}
               <Button
                 type="button"
                 variant="destructive"
