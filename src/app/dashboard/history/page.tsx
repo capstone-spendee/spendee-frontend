@@ -36,7 +36,8 @@ const fetchData = async (): Promise<HistoryData[]> => {
     // Assuming the API returns an array or has a data property
     return Array.isArray(result) ? result : result.data || [];
   } catch (err) {
-    toast.error('Gagal mengambil data prediksi' + err);
+    toast.error('Tida ada data history');
+    const error = err
     return [];
   }
 };
