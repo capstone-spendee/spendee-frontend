@@ -8,12 +8,12 @@ const steps = [
     description: "Buat akun Spendee dengan email aktif, lalu login ke dashboard aplikasi.",
   },
   {
-    title: "2. Lengkapi Data Diri",
-    description: "Isi data customer yang ingin diperiksa dan informasi yang dibutuhkan untuk analisis kelayakan.",
+    title: "2. Lengkapi Data",
+    description: "Isi data customer (Personality / Startup) yang ingin diperiksa dan informasi yang dibutuhkan untuk analisis kelayakan.",
   },
   {
     title: "3. Ajukan Analisis",
-    description: "Pilih menu check eligibility, lalu klik tombol check eligibility untuk analisis pinjaman atau kelayakan startup.",
+    description: "Pilih menu check eligibility, lalu klik tombol check eligibility untuk analisis pinjaman atau kelayakan startup. untuk pengecekan pertama mungkin membutuhkan waktu lebih lama, estimasi 1 menit",
   },
   {
     title: "4. Lihat Hasil & Rekomendasi",
