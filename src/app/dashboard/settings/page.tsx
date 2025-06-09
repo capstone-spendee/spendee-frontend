@@ -80,8 +80,14 @@ export default function EditProfilePage() {
         if (data.user._id !== oldId) localStorage.setItem("userId", data.user._id)
         if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "")
         if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "")
-        if (data.user.profilePic !== oldPic)
-          localStorage.setItem('userProfilePic', `http://13.54.145.211:3000/${data.user.profilePic}`)
+        if (data.user.profilePic !== oldPic) {
+          const picUrl = data.user.profilePic
+            ? data.user.profilePic.startsWith("http")
+              ? data.user.profilePic
+              : `https://ruangundanganmalang.biz.id/${data.user.profilePic}`
+            : "";
+          localStorage.setItem("userProfilePic", picUrl);
+        }
 
         window.dispatchEvent(new Event("userProfileUpdated"))
       }
