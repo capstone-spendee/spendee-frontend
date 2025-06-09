@@ -8,7 +8,7 @@ const withPWA = require('next-pwa')({
 const nextConfig: NextConfig = withPWA( {
   /* config options here */
     images: {
-    domains: ['13.54.145.211'],
+    domains: ['ruangundanganmalang.biz.id'],
   },
 });
 export default nextConfig;
