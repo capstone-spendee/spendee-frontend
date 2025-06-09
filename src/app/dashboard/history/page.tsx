@@ -24,7 +24,7 @@ export type HistoryData = {
 // Fetch data function
 const fetchData = async (): Promise<HistoryData[]> => {
   try {
-    const dataFromDB = await fetch(`${process.env.NEXT_PUBLIC_HISTORY_ELIGIBILITY}/api/prediction/history`, {
+    const dataFromDB = await fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/prediction/history`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
