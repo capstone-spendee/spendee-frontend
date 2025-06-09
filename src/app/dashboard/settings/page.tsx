@@ -62,7 +62,7 @@ export default function EditProfilePage() {
     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null
 
     try {
-      const res = await fetch("http://13.54.145.211:3000/api/user/profile", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user/profile`, {
         method: "PUT",
         headers: token ? { Authorization: `Bearer ${token}` } : undefined,
         body: formData,
@@ -81,7 +81,7 @@ export default function EditProfilePage() {
         if (data.user.name !== oldName) localStorage.setItem("userName", data.user.name || "")
         if (data.user.email !== oldEmail) localStorage.setItem("userEmail", data.user.email || "")
         if (data.user.profilePic !== oldPic)
-          localStorage.setItem('userProfilePic', `http://13.54.145.211:3000/${data.user.profilePic}`)
+          localStorage.setItem('userProfilePic', `${process.env.NEXT_PUBLIC_API_BACKEND}/${data.user.profilePic}`)
 
         window.dispatchEvent(new Event("userProfileUpdated"))
       }
