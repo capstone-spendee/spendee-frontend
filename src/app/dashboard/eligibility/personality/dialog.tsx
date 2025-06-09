@@ -33,7 +33,7 @@ export default function AlertDialogPersonality(props: PropsResponse) {
             };
 
             try {
-                const res = await fetch('http://13.54.145.211:3000/api/prediction/simpan', {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/prediction/simpan`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
