@@ -18,7 +18,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   setError("");
 
   try {
-    const res = await fetch("http://13.54.145.211:3000/api/auth/login", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -38,7 +38,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       data.user.profilePic
         ? data.user.profilePic.startsWith("http")
           ? data.user.profilePic
-          : `http://13.54.145.211:3000/${data.user.profilePic.replace(/^\/+/, "")}`
+          : `${process.env.NEXT_PUBLIC_API_BACKEND}/${data.user.profilePic.replace(/^\/+/, "")}`
         : ""
     );
 

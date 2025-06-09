@@ -107,7 +107,7 @@ export default function EditProfilePage() {
             setDeleting(true)
             const token = typeof window !== "undefined" ? localStorage.getItem("token") : null
             try {
-              const res = await fetch("http://13.54.145.211:3000/api/user/profile-pic", {
+              const res = await fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user/profile-pic`, {
                 method: "DELETE",
                 headers: {
                   "Authorization": `Bearer ${token}`,
