@@ -30,6 +30,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     // Simpan token dan data user
     localStorage.setItem("token", data.token);
+    document.cookie = `token=${data.token}; path=/; max-age=604800`;
+
     localStorage.setItem("userId", data.user.id);
     localStorage.setItem("userEmail", data.user.email);
     localStorage.setItem("userName", data.user.name);
