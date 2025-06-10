@@ -124,7 +124,7 @@ const handleLogout = useCallback(() => {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className='p-2 '>
-            <Link href="/">
+            <Link href="/dashboard">
               <Image
                 src={logo}
                 alt="logo"

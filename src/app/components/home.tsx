@@ -16,6 +16,7 @@ import Footer from './footer';
 import Navbar from './nav';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { WordRotate } from '@/components/magicui/word-rotate';
 // https://api.github.com/orgs/capstone-spendee/repos   get start in api.github
 
 export default function HomePage() {
@@ -51,12 +52,19 @@ export default function HomePage() {
           <TextAnimate
             animation="slideLeft"
             by="character"
-            className="text-5xl md:text-6xl z-10 pb-4 lg:text-7xl xl:text-8xl text-center font-bold text-foreground tracking-wider"
+            className="text-5xl md:text-6xl z-10 pb-3 lg:text-7xl xl:text-8xl text-center font-bold text-foreground tracking-wider"
           >
             Spendee
           </TextAnimate>
           <BlurFade>
-            <p className="text-center text-base md:text-xl">Check your startups eligibility</p>
+            <h1 className="text-center text-base md:text-xl flex justify-center items-center gap-1.5">
+              {' '}
+              <WordRotate
+                className=" text-black dark:text-white animation-duration-initial"
+                duration={7000}
+                words={['Check your eligibility', 'Check your startups eligibility']}
+              />
+            </h1>
           </BlurFade>
         </div>
         <Link href="/dashboard">
@@ -95,7 +103,7 @@ export default function HomePage() {
 
         <div className="flex flex-col md:flex-row max-w-screen-lg items-center gap-6 md:gap-8 w-full">
           <motion.div
-            className="p-6 border rounded-xl shadow w-full md:w-1/3 flex flex-col items-center text-center"
+            className="p-6 border rounded-xl shadow-md w-full md:w-1/3 flex flex-col items-center text-center"
             whileHover={{ scale: 0.97 }}
             whileTap={{ scale: 0.99 }}
           >
@@ -109,11 +117,11 @@ export default function HomePage() {
               animation="slideLeft"
               className="text-base"
             >
-              Memanfaatkan teknologi canggih untuk analisis data komprehensif
+              Leveraging advanced technology for comprehensive data analysis
             </TextAnimate>
           </motion.div>
           <motion.div
-            className="p-6 border rounded-xl shadow w-full md:w-1/3 flex flex-col items-center text-center"
+            className="p-6 border rounded-xl shadow-md w-full md:w-1/3 flex flex-col items-center text-center"
             whileHover={{ scale: 0.97 }}
             whileTap={{ scale: 0.99 }}
           >
@@ -127,17 +135,17 @@ export default function HomePage() {
               animation="slideLeft"
               className="text-base"
             >
-              Meminimalisir risiko pendanaan dengan identifikasi dini
+              Minimize funding risks with early identification
             </TextAnimate>
           </motion.div>
           <motion.div
-            className="p-6 border rounded-xl shadow w-full md:w-1/3 flex flex-col items-center text-center"
+            className="p-6 border rounded-xl shadow-md w-full md:w-1/3 flex flex-col items-center text-center"
             whileHover={{ scale: 0.97 }}
             whileTap={{ scale: 0.99 }}
           >
             <TextAnimate
               animation="slideLeft"
-              className="font-bold text-lg mb-2"
+              className="font-bold text-lg mb-2 "
             >
               Efficient & Transparent
             </TextAnimate>
@@ -145,7 +153,7 @@ export default function HomePage() {
               animation="slideLeft"
               className="text-base"
             >
-              Proses evaluasi yang efisien, didukung transparansi data
+              Efficient evaluation process, supported by data transparency
             </TextAnimate>
           </motion.div>
         </div>
