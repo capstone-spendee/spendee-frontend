@@ -109,14 +109,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return () => window.removeEventListener("userProfileUpdated", handler);
   }, []);
 
-  const handleLogout = useCallback(() => {
-    localStorage.removeItem("token");
-    localStorage.clear();
-    // localStorage.removeItem("userName");
-    // localStorage.removeItem("userEmail");
-    // localStorage.removeItem("userProfilePic");
-    router.push("/sign-in");
-  }, [router]);
+const handleLogout = useCallback(() => {
+  localStorage.removeItem("token");
+  localStorage.clear();
+  
+  // Hapus cookie token (client-side)
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  
+  router.push("/");
+}, [router]);
 
   return (
     <Sidebar variant="inset" {...props}>
