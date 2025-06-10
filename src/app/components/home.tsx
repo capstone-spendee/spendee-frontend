@@ -59,7 +59,7 @@ export default function HomePage() {
             <p className="text-center text-base md:text-xl">Check your startups eligibility</p>
           </BlurFade>
         </div>
-        <Link href="/sign-in">
+        <Link href="/dashboard">
           <ShimmerButton className="transform hover:-translate-y-1 transition duration-400">
             Coba Sekarang <Rocket className="inline-block w-5 h-5 ml-2" />
           </ShimmerButton>
