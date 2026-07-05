@@ -119,7 +119,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem className="gap-2 flex flex-row items-center justify-between">
             <SidebarMenuButton
               tooltip={user.name}
-              className="bg-card md:gap-1 text-primary dark:text-primary-foreground min-w-8 border font-medium h-8 hover:bg-card duration-200 ease-linear"
+              className="bg-card md:gap-1 min-w-8 border font-medium h-8 hover:bg-card duration-200 ease-linear"
             >
               <Link href="/" aria-label="Go to Spendee homepage">
                 <Avatar className="relative flex shrink-0 overflow-hidden size-5 rounded-none">
