@@ -2,8 +2,9 @@
 
 import { type LucideIcon } from 'lucide-react';
 
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
+import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface Roll {
   name: string;
@@ -21,18 +22,19 @@ interface ProjectListProps {
 }
 
 export function NavProjects({ projects }: ProjectListProps) {
-  const { isMobile } = useSidebar();
+    const pathname = usePathname();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Feature</SidebarGroupLabel>
+      {/* <SidebarGroupLabel>Feature</SidebarGroupLabel> */}
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild size={isMobile ? "sm" : "lg"}>
-              <Link href={item.url} className='px-3'>
+            <SidebarMenuButton asChild isActive={pathname === item.url}
+                tooltip={item.name}>
+              <Link href={item.url}>
                 <item.icon />
-                <span className='font-medium px-1.5'>{item.name}</span>
+                <span>{item.name}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export default function HistorySkeleton() {
   return (
-    <div className="w-full max-w-full mx-auto bg-background">
+    <div className="w-full max-w-7xl mx-auto bg-background">
       {/* Header with Search and Columns */}
       <div className="flex items-center justify-between p-4 border-b border-border">
         <div className="flex-1 max-w-sm">

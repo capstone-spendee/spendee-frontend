@@ -22,7 +22,7 @@ export default function ConverterPage() {
   }, [amount, isIdrToUsd]);
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 rounded-xl border ">
+    <div className="max-w-3xl mx-auto mt-10 p-6 rounded-xl  ">
       <form className="flex flex-col gap-6 ">
         <div className="flex flex-col md:flex-row gap-4 ">
           {/* Input */}

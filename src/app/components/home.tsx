@@ -20,7 +20,7 @@ import { WordRotate } from '@/components/magicui/word-rotate';
 // https://api.github.com/orgs/capstone-spendee/repos   get start in api.github
 
 export default function HomePage() {
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // Prevent hydration mismatch
@@ -29,7 +29,8 @@ export default function HomePage() {
   }, []);
 
   if (!mounted) return null;
-  const mockupImage = theme === 'dark' ? mockupDark : mockupLight;
+  const activeTheme = theme === 'system' ? resolvedTheme : theme;
+  const mockupImage = activeTheme === 'dark' || activeTheme === 'sea' || activeTheme === 'night' ? mockupDark : mockupLight;
   return (
     <div>
       <Navbar />
@@ -103,7 +104,7 @@ export default function HomePage() {
 
         <div className="flex flex-col md:flex-row max-w-screen-lg items-center gap-6 md:gap-8 w-full">
           <motion.div
-            className="p-6 border rounded-xl shadow-md w-full md:w-1/3 flex flex-col items-center text-center"
+            className="p-6 border rounded-xl w-full md:w-1/3 flex flex-col items-center text-center"
             whileHover={{ scale: 0.97 }}
             whileTap={{ scale: 0.99 }}
           >
@@ -121,7 +122,7 @@ export default function HomePage() {
             </TextAnimate>
           </motion.div>
           <motion.div
-            className="p-6 border rounded-xl shadow-md w-full md:w-1/3 flex flex-col items-center text-center"
+            className="p-6 border rounded-xl w-full md:w-1/3 flex flex-col items-center text-center"
             whileHover={{ scale: 0.97 }}
             whileTap={{ scale: 0.99 }}
           >
@@ -139,7 +140,7 @@ export default function HomePage() {
             </TextAnimate>
           </motion.div>
           <motion.div
-            className="p-6 border rounded-xl shadow-md w-full md:w-1/3 flex flex-col items-center text-center"
+            className="p-6 border rounded-xl w-full md:w-1/3 flex flex-col items-center text-center"
             whileHover={{ scale: 0.97 }}
             whileTap={{ scale: 0.99 }}
           >

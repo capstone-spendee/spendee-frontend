@@ -5,7 +5,6 @@ import { Pointer } from '@/components/magicui/pointer';
 import { Badge } from '@/components/ui/badge';
 import { Brain, Building2, GalleryHorizontalEnd, Repeat, Users } from 'lucide-react';
 import Image from 'next/image';
-import cutMocup from '../../../public/image/cutmockupdarkmode.png';
 
 export default function FeatureSpendee() {
   return (
@@ -75,8 +74,10 @@ export default function FeatureSpendee() {
           </div>
           <div className="w-full">
             <Image
-              src={cutMocup}
+              src='/image/cutmockupdarkmode.png'
               alt="mockup"
+              width={800}
+              height={800}
               className="rounded-2xl border h-full w-full object-cover"
             />
           </div>

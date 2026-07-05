@@ -61,11 +61,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <form
         onSubmit={handleSubmit}
-        className="bg-card md:shadow-md shadow-sm rounded-2xl p-10 w-full max-w-md space-y-7 border border-border"
+        className="bg-card  rounded-2xl p-10 w-full max-w-md space-y-7 "
       >
         <div className="mb-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-1 tracking-tight">
-            Masuk ke Spendee
+            Login
           </h2>
           <p className="text-muted-foreground text-center text-sm">
             Silakan masukkan detail akun Anda untuk melanjutkan

@@ -47,11 +47,11 @@ export default function SignUpPage() {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <form
         onSubmit={handleSubmit}
-        className="bg-card md:shadow-md shadow-sm rounded-2xl p-10 w-full max-w-md space-y-7 border border-border"
+        className="bg-card rounded-2xl p-10 w-full max-w-md space-y-7 "
       >
         <div>
           <h2 className="text-3xl font-bold text-center mb-1 text-foreground tracking-tight">
-            Daftar Akun Spendee
+            Daftar Akun 
           </h2>
           <p className="text-muted-foreground text-center mb-4 text-sm">
             Silakan isi data di bawah untuk membuat akun baru

@@ -7,11 +7,11 @@ export default function Eligibility() {
   return (
     <Tabs
       defaultValue="startup"
-      className="w-full" 
+      className="w-full"
     >
-      <TabsList className="grid grid-cols-2 rounded-3xl content-center ml-5 transition delay-150 border-1">
-        <TabsTrigger value="startup" className='gap-3 rounded-xl p-1.5 px-3'><Rocket /> Startup</TabsTrigger>
-        <TabsTrigger value="personality" className='gap-3 rounded-xl p-1.5 px-3'><User /> Personality</TabsTrigger>
+      <TabsList className="grid grid-cols-2 content-center ml-5 transition delay-250 w-full max-w-7xl mx-auto">
+        <TabsTrigger value="startup" className='gap-3 p-1.5 px-3'><Rocket /> Startup</TabsTrigger>
+        <TabsTrigger value="personality" className='gap-3 p-1.5 px-3'><User /> Personality</TabsTrigger>
       </TabsList>
       <TabsContent value="personality">
         <PersonalityForm />

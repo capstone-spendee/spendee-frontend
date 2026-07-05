@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './components/theme-provider';
+import { LenisProvider } from '@/components/lenis-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,16 +32,14 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="96x95.png" />
-        <meta name="theme-color" content="oklch(0.9952 0.0054 117.92)" />
+        <meta name="theme-color" content="#faf9f7" />
       </head>
       <body className={`${geistSans.variable} ${inter.className} antialiased`}>
         <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
         >
-          {children}
+          <LenisProvider>
+            {children}
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

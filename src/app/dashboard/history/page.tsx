@@ -237,7 +237,7 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="w-full max-w-full overflow-hidden">
+    <div className="w-full overflow-hidden max-w-7xl mx-auto">
       {/* <div className="mb-6">
         <h1 className="text-2xl font-bold mb-2">History Prediksi</h1>
         <p className="text-muted-foreground">Lihat riwayat prediksi yang telah dilakukan</p>

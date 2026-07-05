@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun } from "lucide-react"
+import { CloudSun, Flame, Leaf, Moon, RefreshCw, Smile, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -13,27 +13,53 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme } = useTheme()
+  const activeTheme = theme === "system" ? resolvedTheme : theme
+  const isDarkTheme = activeTheme === "dark" || activeTheme === "sea" || activeTheme === "night"
+  const ThemeIcon =
+    activeTheme === "mushaf"
+      ? Leaf
+      : activeTheme === "rawdah"
+        ? Smile
+        : activeTheme === "sea"
+          ? CloudSun
+          : activeTheme === "night"
+            ? Flame
+            : activeTheme === "system"
+              ? RefreshCw
+              : isDarkTheme
+                ? Moon
+                : Sun
+
+  const themeItems = [
+    { value: "light", label: "Light" },
+    { value: "dark", label: "Dark" },
+    { value: "mushaf", label: "Mushaf" },
+    { value: "rawdah", label: "Rawdah" },
+    { value: "sea", label: "Sea" },
+    { value: "night", label: "Night" },
+    { value: "system", label: "System" },
+  ] as const
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <ThemeIcon className="h-[1.2rem] w-[1.2rem] transition-all" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
+        {themeItems.map((item) => {
+          return (
+            <DropdownMenuItem
+              key={item.value}
+              onClick={() => setTheme(item.value)}
+            >
+              {item.label}
+            </DropdownMenuItem>
+          )
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   )

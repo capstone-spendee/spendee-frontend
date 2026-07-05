@@ -68,7 +68,7 @@ export default function StartupForm() {
 
   return (
     <>
-      <Card className="border-none shadow-none">
+      <Card className="border-none shadow-none max-w-7xl mx-auto">
         <CardHeader className="flex justify-between">
           <div>
             <CardTitle>Startup</CardTitle>
@@ -82,7 +82,7 @@ export default function StartupForm() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-4">
                 <FormField
                   control={form.control}
                   name="kategori"
@@ -221,7 +221,6 @@ export default function StartupForm() {
                                 field.onChange(fixedDate);
                               }
                             }}
-                            initialFocus
                           />
                         </PopoverContent>
                       </Popover>
@@ -262,7 +261,6 @@ export default function StartupForm() {
                                 field.onChange(fixedDate);
                               }
                             }}
-                            initialFocus
                           />
                         </PopoverContent>
                       </Popover>
@@ -304,7 +302,6 @@ export default function StartupForm() {
                                 field.onChange(fixedDate);
                               }
                             }}
-                            initialFocus
                           />
                         </PopoverContent>
                       </Popover>
@@ -345,7 +342,6 @@ export default function StartupForm() {
                                 field.onChange(fixedDate);
                               }
                             }}
-                            initialFocus
                           />
                         </PopoverContent>
                       </Popover>
